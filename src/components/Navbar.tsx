@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -11,28 +13,56 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+    const closeMenu = () => setIsMenuOpen(false);
+
+    const navLinks = [
+        { name: 'Home', href: '#hero' },
+        { name: 'Products', href: '#products' },
+        { name: 'Gallery', href: '#gallery' },
+        { name: 'About', href: '#about' },
+        { name: 'Contact', href: '#contact' },
+    ];
+
     return (
-        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'glass-nav py-4' : 'bg-transparent py-8'}`}>
+        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled || isMenuOpen ? 'glass-nav py-4' : 'bg-transparent py-8'}`}>
             <div className="container mx-auto px-6 flex justify-between items-center">
-                <div className="flex items-center gap-4">
-                    <img src="/logo.png" alt="White Wolf Furniture Logo" className="h-12 w-auto" />
-                    <span className="text-xl font-serif font-bold tracking-wider hidden sm:block uppercase">White Wolf</span>
+                <div className="flex items-center gap-4 z-50">
+                    <img src="/logo.png" alt="White Wolf Furniture Logo" className="h-10 md:h-12 w-auto" />
+                    <span className="text-lg md:text-xl font-serif font-bold tracking-wider hidden xs:block uppercase">White Wolf</span>
                 </div>
 
-                <div className="hidden md:flex gap-8 text-sm font-medium tracking-widest uppercase">
-                    <a href="#hero" className="hover:text-accent transition-colors">Home</a>
-                    <a href="#products" className="hover:text-accent transition-colors">Products</a>
-                    <a href="#gallery" className="text-sm font-bold tracking-[.3em] uppercase hover:text-accent transition-colors">Gallery</a>
-                    <a href="#about" className="text-sm font-bold tracking-[.3em] uppercase hover:text-accent transition-colors">About</a>
-                    <a href="#contact" className="text-sm font-bold tracking-[.3em] uppercase hover:text-accent transition-colors">Contact</a>
+                {/* Desktop Menu */}
+                <div className="hidden md:flex gap-8 text-[10px] font-black tracking-[.4em] uppercase">
+                    {navLinks.map((link) => (
+                        <a key={link.name} href={link.href} className="hover:text-accent transition-all duration-300">
+                            {link.name}
+                        </a>
+                    ))}
                 </div>
 
-                <div className="md:hidden">
-                    <button className="text-secondary p-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        </svg>
+                {/* Mobile Menu Button */}
+                <div className="md:hidden z-50">
+                    <button onClick={toggleMenu} className="text-secondary p-2 hover:text-accent transition-colors">
+                        {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
                     </button>
+                </div>
+            </div>
+
+            {/* Mobile Menu Overlay */}
+            <div className={`fixed inset-0 bg-primary/95 backdrop-blur-xl transition-all duration-500 md:hidden ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+                <div className="flex flex-col items-center justify-center h-full gap-10">
+                    {navLinks.map((link, index) => (
+                        <a
+                            key={link.name}
+                            href={link.href}
+                            onClick={closeMenu}
+                            className={`text-2xl font-serif font-black tracking-[.2em] uppercase transition-all duration-500 hover:text-accent ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                            style={{ transitionDelay: `${index * 100}ms` }}
+                        >
+                            {link.name}
+                        </a>
+                    ))}
                 </div>
             </div>
         </nav>
