@@ -1,0 +1,110 @@
+export const products = [
+    {
+        id: 2,
+        name: "Royal Gilded Throne Set",
+        price: "$TBD",
+        image: "/assets/real-photos/0ee9eaf8-e9d8-451d-b1e5-c33174f24cff.JPG",
+        description: "Hand-carved ornate living set with gold leaf finishing and velvet upholstery."
+    },
+    {
+        id: 3,
+        name: "Tobacco Suede L-Sectional",
+        price: "$TBD",
+        image: "/assets/real-photos/0f204c24-39fa-45f9-82ac-5ec44d58e84d.JPG",
+        description: "Deep-seated L-shaped sectional in premium tobacco suede with contrast stitching."
+    },
+    {
+        id: 4,
+        name: "Artisanal Oak Shoe Rack",
+        price: "$TBD",
+        image: "/assets/real-photos/2448f4bc-4921-4d12-b200-3c85fb6136f7.JPG",
+        description: "Solid oak multi-tier storage unit with a natural protective lacquer finish."
+    },
+    {
+        id: 5,
+        name: "Luxury Velvet Bed Frame",
+        price: "$TBD",
+        image: "/assets/real-photos/c63cfe8d-df2b-4cd3-b38f-69039154e99f.JPG",
+        description: "Plush vertical-tufted headboard with gold inlay accents and reinforced base."
+    },
+    {
+        id: 6,
+        name: "Minimalist Wall Wine Rack",
+        price: "$TBD",
+        image: "/assets/real-photos/b4beb8b7-60eb-4965-b64b-879d93945893.JPG",
+        description: "Staggered geometric wine storage with integrated glass holders and matte finish."
+    },
+    {
+        id: 7,
+        name: "Custom Walk-in Closet",
+        price: "$TBD",
+        image: "/assets/real-photos/4c913816-bd47-4660-9102-f8107b9a0b3e.JPG",
+        description: "Tailor-made organizational system with soft-close drawers and integrated lighting."
+    },
+    {
+        id: 8,
+        name: "Glow Entertainment Center",
+        price: "$TBD",
+        image: "/assets/real-photos/1eb29873-46dc-44f2-8225-77cbff6e9d6e.JPG",
+        description: "Sleek media unit featuring floating shelves and ambient LED integration."
+    }
+];
+
+export const galleryImages = [
+    "/assets/real-photos/0b044311-2374-40c3-8cbc-b566b7093e19.JPG",
+    "/assets/real-photos/0ee9eaf8-e9d8-451d-b1e5-c33174f24cff.JPG",
+    "/assets/real-photos/0f204c24-39fa-45f9-82ac-5ec44d58e84d.JPG",
+    "/assets/real-photos/0fb85de1-39c4-4d39-91b3-8ebd051715a7.JPG",
+    "/assets/real-photos/16e23f66-cff3-4758-9709-63729109b7de.JPG",
+    "/assets/real-photos/1a42dddc-4e57-4f0a-b0b1-0b979ff7b0d2.JPG",
+    "/assets/real-photos/1eb29873-46dc-44f2-8225-77cbff6e9d6e.JPG",
+    "/assets/real-photos/2448f4bc-4921-4d12-b200-3c85fb6136f7.JPG",
+    "/assets/real-photos/281fe61a-5160-479e-9198-dccc7a3c5384.JPG",
+    "/assets/real-photos/2a9b34a5-1fb2-41c8-a949-017141d9e328.JPG",
+    "/assets/real-photos/2babe643-3a3d-4132-a64c-2b7c9efef90b.JPG",
+    "/assets/real-photos/39f7c32e-9617-49d4-8fcc-24c9272c8130.JPG",
+    "/assets/real-photos/4c142611-58d6-4593-ae4b-8096a380dc61.JPG",
+    "/assets/real-photos/4c913816-bd47-4660-9102-f8107b9a0b3e.JPG",
+    "/assets/real-photos/5b102018-2662-42b0-92a6-3afd423dc9be.JPG",
+    "/assets/real-photos/5e4a3cbf-7559-4e6d-b9a4-ca2c83560e2d.JPG",
+    "/assets/real-photos/5f9cb748-af39-49c3-83aa-c9af2e91a348.JPG",
+    "/assets/real-photos/616aa5a3-644c-4240-94fa-c70dcc1db5bd.JPG",
+    "/assets/real-photos/66f04847-3d19-4766-b176-4cd47900817c.JPG",
+    "/assets/real-photos/676020ac-3bb8-4cda-9cfc-2d8002c3cf05.JPG",
+    "/assets/real-photos/68b5b282-16c9-4c73-abd3-37effa32e2e7.JPG",
+    "/assets/real-photos/69765786-02e9-4790-a08d-c22ef9d969af.JPG",
+    "/assets/real-photos/6ed1d439-91f5-4ed6-a3a4-28ac6fff7eef.JPG",
+    "/assets/real-photos/75660fb9-b1eb-4a4a-8f5f-47650043d3df.JPG",
+    "/assets/real-photos/763af519-23cc-42a7-bf34-b763ad8740fe.JPG",
+    "/assets/real-photos/7a478798-ff69-4918-8259-3eef9c6cf890.JPG",
+    "/assets/real-photos/823a84f9-d0d6-4489-9bd4-b541cdd533f2.JPG",
+    "/assets/real-photos/87caed84-07ad-4561-a787-6ef4c52a6fb1.JPG",
+    "/assets/real-photos/886a5b3d-37a8-4667-85f6-4681ee5afb60.JPG",
+    "/assets/real-photos/8cec0f02-3080-4999-851e-6d936065529a.JPG",
+    "/assets/real-photos/8e93370c-475e-476e-8b8b-63f27f2b84a9.JPG",
+    "/assets/real-photos/978efd5e-2e17-48b9-b8c0-5a12f2ea758a.JPG",
+    "/assets/real-photos/99691bc8-cb19-472a-9cd6-84b07a11023f.JPG",
+    "/assets/real-photos/9a18032d-98ba-4122-824b-efb42bb29331.JPG",
+    "/assets/real-photos/9dd50f39-bed8-409d-89f5-e5de3884e764.JPG",
+    "/assets/real-photos/a273e8f9-5da3-49da-970d-cf0c4c0a92e3.JPG",
+    "/assets/real-photos/a93b6fd6-8aa2-47ff-a991-e65c5e29b3f4.JPG",
+    "/assets/real-photos/b1b57ad1-670d-4e36-9174-3dfa4e475b1b.JPG",
+    "/assets/real-photos/b4beb8b7-60eb-4965-b64b-879d93945893.JPG",
+    "/assets/real-photos/b90fde4d-2a00-4ed0-bb60-914379aff74f.JPG",
+    "/assets/real-photos/bb1f6537-e02d-4801-bc54-b21f838e7cbe.JPG",
+    "/assets/real-photos/c63cfe8d-df2b-4cd3-b38f-69039154e99f.JPG",
+    "/assets/real-photos/c79ddf5c-8f67-43c3-98cf-5e4fa96f03a4.JPG",
+    "/assets/real-photos/dc993e9d-a8f3-408e-9d7f-39605e2f5219.JPG",
+    "/assets/real-photos/e0205f07-b16c-43f4-9f26-a613728f6f23.JPG",
+    "/assets/real-photos/e036dff2-db88-450f-9ec0-e87f19da71d0.JPG",
+    "/assets/real-photos/e393c529-138b-4f91-b354-e10b0614d2b6.JPG",
+    "/assets/real-photos/e5cce75b-7160-4d25-b9f4-a7d765c3586d.JPG",
+    "/assets/real-photos/ea56f884-ba91-4b9b-a09d-89a73c7c4a4f.JPG",
+    "/assets/real-photos/ee529511-7ae8-4b6f-90b2-16616f210025.JPG",
+    "/assets/real-photos/ef168856-d4a4-4bf8-afd1-39a038164dd7.JPG",
+    "/assets/real-photos/f23bf14a-db5e-4e73-9c95-72548da93af1.JPG",
+    "/assets/real-photos/f263c427-f967-421d-ba13-6d58e671ba08.JPG",
+    "/assets/real-photos/f7382742-315c-4240-9aa5-612eecb0680e.JPG",
+    "/assets/real-photos/fb5cebf1-f1a4-4674-a517-a8d1c15f4598.JPG",
+    "/assets/real-photos/ffdcfd6e-e9ed-4f3c-be65-37706b898ed4.JPG"
+];

@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero.astro';
+import ProductList from '../components/ProductList.astro';
+import Gallery from '../components/Gallery.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+import QuoteModal from '../components/QuoteModal';
+---
+
+<Layout title="Artisanal Industrial Furniture">
+	<Navbar client:load />
+	<QuoteModal client:load />
+	
+	<main>
+		<div class="reveal">
+			<Hero />
+		</div>
+		<div class="reveal reveal-delay-200">
+			<ProductList />
+		</div>
+		<div class="reveal">
+			<Gallery />
+		</div>
+		<div class="reveal">
+			<About />
+		</div>
+		<div class="reveal">
+			<Contact />
+		</div>
+	</main>
+
+	<footer class="bg-primary py-12 border-t border-white/5 text-center">
+		<div class="container mx-auto px-6">
+			<img src="/logo.png" alt="Logo" class="h-12 mx-auto mb-6 opacity-50 grayscale" />
+			<p class="text-xs tracking-[.4em] uppercase text-gray-500">
+				&copy; 2024 White Wolf Furniture. All Rights Reserved.
+			</p>
+			<p class="mt-4 text-[10px] tracking-widest text-accent/30 uppercase">
+				Crafted with Pride. Built to Last.
+			</p>
+		</div>
+	</footer>
+</Layout>

@@ -1,0 +1,65 @@
+---
+import QuoteButton from './QuoteButton';
+---
+<section id="hero" class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-primary">
+  <!-- Dynamic Background Element -->
+  <div class="absolute inset-0 z-0">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle_at_center,rgba(160,174,192,0.15)_0%,transparent_50%)] animate-pulse"></div>
+    <div class="absolute inset-0 bg-[url('/bg-texture.png')] opacity-10 mix-blend-overlay"></div>
+  </div>
+
+  <div class="relative z-10 text-center px-6">
+    <div class="mb-8 flex justify-center">
+      <div class="relative">
+        <div class="absolute inset-0 blur-3xl bg-accent opacity-20 rounded-full animate-pulse"></div>
+        <img 
+          src="/logo.png" 
+          alt="White Wolf Furniture" 
+          class="relative w-64 md:w-80 drop-shadow-[0_0_50px_rgba(255,255,255,0.1)] animate-fade-in-up"
+        />
+      </div>
+    </div>
+    
+    <h1 class="text-5xl md:text-8xl font-serif font-black tracking-tighter mb-6 opacity-0 animate-fade-in-up delay-200 uppercase text-glow">
+      WHITE WOLF <span class="text-accent underline decoration-accent/20 underline-offset-[12px]">FURNITURE</span>
+    </h1>
+    
+    <p class="text-lg md:text-2xl font-sans text-accent/80 max-w-3xl mx-auto opacity-0 animate-fade-in-up delay-500 uppercase tracking-[0.5em] leading-relaxed mb-12">
+      Artisanal Craftsmanship • Timeless Industrial Design
+    </p>
+
+    <div class="flex flex-col md:flex-row items-center justify-center gap-6 opacity-0 animate-fade-in-up delay-700">
+      <QuoteButton client:load />
+      <a href="#products" class="text-sm font-bold tracking-[.4em] uppercase text-gray-400 hover:text-accent transition-all duration-300">
+        View Collection
+      </a>
+    </div>
+  </div>
+  
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-accent">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+    </svg>
+  </div>
+</section>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-700 { animation-delay: 0.7s; }
+</style>
