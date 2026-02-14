@@ -7,11 +7,13 @@ import Gallery from '../components/Gallery.astro';
 import About from '../components/About.astro';
 import Contact from '../components/Contact.astro';
 import QuoteModal from '../components/QuoteModal';
+import BackToTop from '../components/BackToTop';
 ---
 
 <Layout title="Artisanal Industrial Furniture">
 	<Navbar client:load />
 	<QuoteModal client:load />
+	<BackToTop client:load />
 	
 	<main>
 		<div class="reveal">

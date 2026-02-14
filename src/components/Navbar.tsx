@@ -27,10 +27,10 @@ const Navbar = () => {
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled || isMenuOpen ? 'glass-nav py-4' : 'bg-transparent py-8'}`}>
             <div className="container mx-auto px-6 flex justify-between items-center">
-                <div className="flex items-center gap-4 z-50">
+                <a href="#hero" className="flex items-center gap-4 z-50 group transition-transform hover:scale-105" onClick={closeMenu}>
                     <img src="/logo.png" alt="White Wolf Furniture Logo" className="h-10 md:h-12 w-auto" />
-                    <span className="text-lg md:text-xl font-serif font-bold tracking-wider hidden xs:block uppercase">White Wolf</span>
-                </div>
+                    <span className="text-lg md:text-xl font-serif font-black tracking-wider hidden xs:block uppercase">White Wolf</span>
+                </a>
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex gap-8 text-[10px] font-black tracking-[.4em] uppercase">
