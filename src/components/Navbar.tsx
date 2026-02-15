@@ -24,6 +24,25 @@ const Navbar = () => {
         { name: 'Contacts', href: '#contact' },
     ];
 
+    const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+        closeMenu();
+
+        const targetId = href.replace('#', '');
+        const elem = document.getElementById(targetId);
+
+        if (elem) {
+            // First scroll to the approximate position
+            elem.scrollIntoView({ behavior: 'smooth' });
+
+            // If it's a dynamic section like gallery, re-check after a short delay
+            // to account for any layout shifts from loading content
+            setTimeout(() => {
+                elem.scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        }
+    };
+
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled || isMenuOpen ? 'glass-nav py-4' : 'bg-transparent py-8'}`}>
             <div className="container mx-auto px-6 flex justify-between items-center">
@@ -35,7 +54,12 @@ const Navbar = () => {
                 {/* Desktop Menu */}
                 <div className="hidden md:flex gap-8 text-[10px] font-black tracking-[.4em] uppercase">
                     {navLinks.map((link) => (
-                        <a key={link.name} href={link.href} className="hover:text-accent transition-all duration-300">
+                        <a
+                            key={link.name}
+                            href={link.href}
+                            onClick={(e) => scrollToSection(e, link.href)}
+                            className="hover:text-accent transition-all duration-300"
+                        >
                             {link.name}
                         </a>
                     ))}
@@ -56,7 +80,7 @@ const Navbar = () => {
                         <a
                             key={link.name}
                             href={link.href}
-                            onClick={closeMenu}
+                            onClick={(e) => scrollToSection(e, link.href)}
                             className={`text-2xl font-serif font-black tracking-[.2em] uppercase transition-all duration-500 hover:text-accent ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                             style={{ transitionDelay: `${index * 100}ms` }}
                         >

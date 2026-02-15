@@ -22,6 +22,10 @@
   h6 {
     @apply font-serif;
   }
+
+  section {
+    scroll-margin-top: 100px;
+  }
 }
 
 /* Glassmorphism Utilities */
