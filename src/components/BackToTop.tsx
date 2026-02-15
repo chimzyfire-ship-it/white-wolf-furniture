@@ -7,7 +7,7 @@ const BackToTop: React.FC = () => {
 
     useEffect(() => {
         const toggleVisibility = () => {
-            if (window.pageYOffset > 400) {
+            if (window.scrollY > 400) {
                 setIsVisible(true);
             } else {
                 setIsVisible(false);
@@ -33,10 +33,10 @@ const BackToTop: React.FC = () => {
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.8, y: 20 }}
                     onClick={scrollToTop}
-                    className="fixed bottom-8 right-8 z-[90] p-4 glass-card rounded-full shadow-2xl transition-all duration-300 hover:bg-accent hover:text-primary group border border-white/10"
+                    className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[90] p-5 md:p-4 glass-card rounded-full shadow-2xl transition-all duration-300 hover:bg-accent hover:text-primary group border border-white/10"
                     aria-label="Back to Top"
                 >
-                    <ArrowUp size={24} className="group-hover:-translate-y-1 transition-transform duration-300" />
+                    <ArrowUp size={28} className="md:w-6 md:h-6 group-hover:-translate-y-1 transition-transform duration-300" />
                     <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 glass-card rounded text-[8px] tracking-widest uppercase font-black opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
                         Back to Top
                     </div>
