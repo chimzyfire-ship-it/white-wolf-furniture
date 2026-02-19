@@ -57,3 +57,29 @@
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(160, 174, 192, 0.2);
 }
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Glass footer */
+.glass-footer {
+  @apply bg-white/[0.01] backdrop-blur-md border-t border-white/5;
+  background: linear-gradient(180deg, rgba(160, 174, 192, 0.02) 0%, rgba(5, 16, 32, 1) 100%);
+}
+
+/* Mobile tap highlight */
+@media (hover: none) {
+  a, button {
+    -webkit-tap-highlight-color: rgba(160, 174, 192, 0.1);
+  }
+}
+
+/* Optimized image rendering */
+img {
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
