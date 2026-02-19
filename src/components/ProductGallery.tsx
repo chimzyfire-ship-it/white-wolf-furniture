@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Maximize2, ChevronLeft, ChevronRight, Info } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Info } from 'lucide-react';
 
 interface Product {
     name: string;
@@ -15,21 +15,55 @@ interface ProductGalleryProps {
 
 const ProductGallery: React.FC<ProductGalleryProps> = ({ products }) => {
     const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
+    const [touchStart, setTouchStart] = useState<number | null>(null);
+    const [touchEnd, setTouchEnd] = useState<number | null>(null);
+    const minSwipeDistance = 50;
 
     const openLightbox = (index: number) => setSelectedProduct(index);
-    const closeLightbox = () => setSelectedProduct(null);
+    const closeLightbox = useCallback(() => setSelectedProduct(null), []);
 
-    const nextProduct = (e: React.MouseEvent) => {
-        e.stopPropagation();
+    const nextProduct = useCallback(() => {
+        setSelectedProduct(prev => prev !== null ? (prev + 1) % products.length : null);
+    }, [products.length]);
+
+    const prevProduct = useCallback(() => {
+        setSelectedProduct(prev => prev !== null ? (prev - 1 + products.length) % products.length : null);
+    }, [products.length]);
+
+    // Keyboard navigation
+    useEffect(() => {
+        if (selectedProduct === null) return;
+        const handleKey = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextProduct();
+            if (e.key === 'ArrowLeft') prevProduct();
+        };
+        window.addEventListener('keydown', handleKey);
+        return () => window.removeEventListener('keydown', handleKey);
+    }, [selectedProduct, closeLightbox, nextProduct, prevProduct]);
+
+    // Body scroll lock
+    useEffect(() => {
         if (selectedProduct !== null) {
-            setSelectedProduct((selectedProduct + 1) % products.length);
+            document.body.style.overflow = 'hidden';
+            return () => { document.body.style.overflow = ''; };
         }
-    };
+    }, [selectedProduct]);
 
-    const prevProduct = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        if (selectedProduct !== null) {
-            setSelectedProduct((selectedProduct - 1 + products.length) % products.length);
+    // Touch handlers
+    const onTouchStart = (e: React.TouchEvent) => {
+        setTouchEnd(null);
+        setTouchStart(e.targetTouches[0].clientX);
+    };
+    const onTouchMove = (e: React.TouchEvent) => {
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+        const distance = touchStart - touchEnd;
+        if (Math.abs(distance) >= minSwipeDistance) {
+            if (distance > 0) nextProduct();
+            else prevProduct();
         }
     };
 
@@ -74,65 +108,95 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ products }) => {
                 ))}
             </div>
 
+            {/* ─── Pro Lightbox ──────────────────────────────────────────── */}
             <AnimatePresence>
                 {selectedProduct !== null && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] bg-primary/95 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 md:p-12"
+                        transition={{ duration: 0.3 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 md:p-12"
+                        style={{
+                            background: 'radial-gradient(ellipse at center, rgba(5,16,32,0.92) 0%, rgba(3,10,19,0.98) 70%)',
+                            backdropFilter: 'blur(24px)',
+                            WebkitBackdropFilter: 'blur(24px)',
+                        }}
                         onClick={closeLightbox}
+                        onTouchStart={onTouchStart}
+                        onTouchMove={onTouchMove}
+                        onTouchEnd={onTouchEnd}
                     >
+                        {/* Ambient glow */}
+                        <div className="absolute inset-0 pointer-events-none">
+                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(160,174,192,0.06)_0%,transparent_60%)]" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/[0.03] rounded-full blur-[120px]" />
+                        </div>
+
+                        {/* Close button */}
                         <button
-                            className="absolute top-4 right-4 sm:top-8 sm:right-8 text-white/50 hover:text-white active:text-white transition-all p-2.5 sm:p-2 z-[110] bg-white/5 sm:bg-transparent rounded-full"
-                            onClick={closeLightbox}
+                            className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/40 hover:text-white active:text-white transition-all hover:rotate-90 p-2.5 sm:p-2 z-[110] bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-sm border border-white/5"
+                            onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
                         >
-                            <X size={28} className="sm:w-8 sm:h-8" />
+                            <X size={24} strokeWidth={1.5} className="sm:w-7 sm:h-7" />
+                        </button>
+
+                        {/* Nav arrows */}
+                        <button
+                            className="absolute left-2 sm:left-6 md:left-10 top-1/2 -translate-y-1/2 text-white/25 hover:text-white active:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all p-2 sm:p-3 z-[110] backdrop-blur-sm border border-white/0 hover:border-white/5"
+                            onClick={(e) => { e.stopPropagation(); prevProduct(); }}
+                        >
+                            <ChevronLeft size={28} strokeWidth={1.5} className="sm:w-10 sm:h-10" />
                         </button>
 
                         <button
-                            className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-white/30 hover:text-white active:text-white transition-all p-2 sm:p-4 z-[110]"
-                            onClick={prevProduct}
+                            className="absolute right-2 sm:right-6 md:right-10 top-1/2 -translate-y-1/2 text-white/25 hover:text-white active:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all p-2 sm:p-3 z-[110] backdrop-blur-sm border border-white/0 hover:border-white/5"
+                            onClick={(e) => { e.stopPropagation(); nextProduct(); }}
                         >
-                            <ChevronLeft size={32} className="sm:w-10 sm:h-10" />
+                            <ChevronRight size={28} strokeWidth={1.5} className="sm:w-10 sm:h-10" />
                         </button>
 
-                        <button
-                            className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-white/30 hover:text-white active:text-white transition-all p-2 sm:p-4 z-[110]"
-                            onClick={nextProduct}
-                        >
-                            <ChevronRight size={32} className="sm:w-10 sm:h-10" />
-                        </button>
-
+                        {/* Centered content */}
                         <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            className="relative max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-center bg-primary/50 p-4 sm:p-8 rounded-2xl border border-white/5 mx-6 sm:mx-0"
+                            key={selectedProduct}
+                            initial={{ scale: 0.88, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.88, opacity: 0, y: 20 }}
+                            transition={{ type: 'spring', damping: 30, stiffness: 260 }}
+                            className="relative max-w-4xl w-full flex flex-col items-center"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="relative group overflow-hidden rounded-xl border border-white/10 shadow-2xl">
-                                <img
-                                    src={products[selectedProduct].image}
-                                    alt={products[selectedProduct].name}
-                                    className="w-full h-auto object-contain max-h-[60vh]"
-                                />
+                            {/* Image with glassmorphic frame */}
+                            <div className="relative group w-full flex justify-center">
+                                {/* Glow aura behind image */}
+                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                    <div className="w-[80%] h-[80%] bg-accent/[0.06] blur-[80px] rounded-3xl animate-pulse" style={{ animationDuration: '4s' }} />
+                                </div>
+
+                                <div className="relative rounded-xl overflow-hidden border border-white/[0.08] shadow-[0_0_80px_rgba(0,0,0,0.5)] bg-white/[0.02] backdrop-blur-sm">
+                                    <img
+                                        src={products[selectedProduct].image}
+                                        alt={products[selectedProduct].name}
+                                        className="max-w-full max-h-[55vh] sm:max-h-[65vh] object-contain"
+                                    />
+                                </div>
                             </div>
 
-                            <div className="text-left">
-                                <h4 className="text-accent text-[9px] sm:text-[10px] tracking-[.4em] sm:tracking-[.5em] uppercase font-black mb-2 sm:mb-4">Product Detail</h4>
-                                <h3 className="text-2xl sm:text-4xl md:text-5xl font-serif font-black mb-2 sm:mb-4">{products[selectedProduct].name}</h3>
-                                <p className="text-lg sm:text-2xl font-sans font-bold text-accent mb-4 sm:mb-6">{products[selectedProduct].price}</p>
-                                <div className="h-px w-16 sm:w-20 bg-accent/30 mb-4 sm:mb-8"></div>
-                                <p className="text-gray-400 text-sm sm:text-lg leading-relaxed mb-5 sm:mb-8">
-                                    {products[selectedProduct].description}
-                                </p>
-                                <button
-                                    onClick={closeLightbox}
-                                    className="px-6 sm:px-10 py-3 sm:py-5 glass-button text-accent font-black text-[10px] sm:text-xs tracking-[.3em] sm:tracking-[.4em] uppercase hover:bg-accent hover:text-primary active:bg-accent active:text-primary transition-all duration-500 rounded-lg sm:rounded-none"
-                                >
-                                    Close View
-                                </button>
+                            {/* Info panel below image */}
+                            <div className="mt-5 sm:mt-8 text-center w-full max-w-lg mx-auto px-4">
+                                <div className="bg-white/[0.03] backdrop-blur-md border border-white/[0.06] rounded-xl px-5 py-4 sm:px-8 sm:py-5">
+                                    <h3 className="text-lg sm:text-2xl font-serif font-bold mb-1">{products[selectedProduct].name}</h3>
+                                    <p className="text-accent text-base sm:text-xl font-sans font-bold mb-2 sm:mb-3">{products[selectedProduct].price}</p>
+                                    <div className="h-px w-12 bg-accent/20 mx-auto mb-2 sm:mb-3" />
+                                    <p className="text-gray-400 text-[11px] sm:text-sm leading-relaxed">
+                                        {products[selectedProduct].description}
+                                    </p>
+                                </div>
+
+                                {/* Counter */}
+                                <span className="inline-block mt-3 sm:mt-5 text-accent/40 text-[10px] tracking-[.4em] uppercase">
+                                    {selectedProduct + 1} / {products.length}
+                                </span>
                             </div>
                         </motion.div>
                     </motion.div>

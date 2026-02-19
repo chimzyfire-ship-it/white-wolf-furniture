@@ -72,7 +72,9 @@ html {
 
 /* Mobile tap highlight */
 @media (hover: none) {
-  a, button {
+
+  a,
+  button {
     -webkit-tap-highlight-color: rgba(160, 174, 192, 0.1);
   }
 }
@@ -82,4 +84,41 @@ img {
   image-rendering: auto;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+
+/* ─── Lightbox Glassmorphism ─────────────────────────────────────── */
+.glass-lightbox {
+  background: radial-gradient(ellipse at center, rgba(5, 16, 32, 0.92) 0%, rgba(3, 10, 19, 0.98) 70%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.glass-frame {
+  @apply bg-white/[0.02] backdrop-blur-sm border border-white/[0.08] rounded-xl overflow-hidden;
+  box-shadow:
+    0 0 80px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(160, 174, 192, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.glass-info-panel {
+  @apply bg-white/[0.03] backdrop-blur-md border border-white/[0.06] rounded-xl;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Glow pulse for accent borders */
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(160, 174, 192, 0.06);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(160, 174, 192, 0.12);
+  }
+}
+
+.glow-pulse {
+  animation: glowPulse 4s ease-in-out infinite;
 }

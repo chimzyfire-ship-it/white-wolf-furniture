@@ -179,62 +179,81 @@ const Lightbox: React.FC<{
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-[#030a13]/98 backdrop-blur-xl flex items-center justify-center p-3 sm:p-4 md:p-12"
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-12"
+            style={{
+                background: 'radial-gradient(ellipse at center, rgba(5,16,32,0.92) 0%, rgba(3,10,19,0.98) 70%)',
+                backdropFilter: 'blur(24px)',
+                WebkitBackdropFilter: 'blur(24px)',
+            }}
             onClick={onClose}
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
         >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(160,174,192,0.08)_0%,transparent_70%)] pointer-events-none" />
+            {/* Ambient glow */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(160,174,192,0.06)_0%,transparent_60%)]" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/[0.04] rounded-full blur-[100px]" />
+            </div>
 
             {/* Close — large touch target on mobile */}
             <button
-                className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/50 hover:text-white active:text-white transition-all hover:rotate-90 p-2.5 sm:p-2 z-[110] bg-white/5 sm:bg-transparent rounded-full active:bg-white/10"
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/40 hover:text-white active:text-white transition-all hover:rotate-90 p-2.5 sm:p-2 z-[110] bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-sm border border-white/5"
                 onClick={(e) => { e.stopPropagation(); onClose(); }}
             >
-                <X size={28} strokeWidth={1.5} className="sm:w-9 sm:h-9" />
+                <X size={24} strokeWidth={1.5} className="sm:w-8 sm:h-8" />
             </button>
 
-            {/* Nav arrows — larger on mobile */}
+            {/* Nav arrows */}
             <button
-                className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/30 hover:text-white active:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all p-2 sm:p-3 z-[110]"
+                className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/25 hover:text-white active:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all p-2 sm:p-3 z-[110] backdrop-blur-sm border border-white/0 hover:border-white/5"
                 onClick={(e) => { e.stopPropagation(); onPrev(); }}
             >
-                <ChevronLeft size={32} strokeWidth={1.5} className="sm:w-10 sm:h-10" />
+                <ChevronLeft size={28} strokeWidth={1.5} className="sm:w-10 sm:h-10" />
             </button>
 
             <button
-                className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/30 hover:text-white active:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all p-2 sm:p-3 z-[110]"
+                className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/25 hover:text-white active:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all p-2 sm:p-3 z-[110] backdrop-blur-sm border border-white/0 hover:border-white/5"
                 onClick={(e) => { e.stopPropagation(); onNext(); }}
             >
-                <ChevronRight size={32} strokeWidth={1.5} className="sm:w-10 sm:h-10" />
+                <ChevronRight size={28} strokeWidth={1.5} className="sm:w-10 sm:h-10" />
             </button>
 
+            {/* Centered image with glassmorphic frame */}
             <motion.div
                 key={selectedIndex}
-                initial={{ scale: 0.85, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.85, opacity: 0 }}
-                transition={{ type: 'spring', damping: 28, stiffness: 220 }}
-                className="relative max-w-5xl w-full flex flex-col items-center px-8 sm:px-0"
+                initial={{ scale: 0.88, opacity: 0, y: 15 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.88, opacity: 0, y: 15 }}
+                transition={{ type: 'spring', damping: 30, stiffness: 260 }}
+                className="relative max-w-5xl w-full flex flex-col items-center px-6 sm:px-0"
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className="relative group">
-                    <div className="absolute -inset-4 bg-accent/10 blur-2xl rounded-full opacity-40 group-hover:opacity-70 transition-opacity" />
-                    {/* Full-res original for lightbox */}
-                    <img
-                        src={images[selectedIndex]}
-                        alt="HD View"
-                        className="relative max-w-full max-h-[70vh] sm:max-h-[78vh] object-contain shadow-[0_0_60px_rgba(0,0,0,0.6)] border border-white/5 rounded-lg"
-                    />
+                <div className="relative group w-full flex justify-center">
+                    {/* Glow aura behind image */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div className="w-[70%] h-[70%] bg-accent/[0.05] blur-[80px] rounded-3xl animate-pulse" style={{ animationDuration: '4s' }} />
+                    </div>
+
+                    {/* Glassmorphic image frame */}
+                    <div className="relative rounded-xl overflow-hidden border border-white/[0.08] shadow-[0_0_80px_rgba(0,0,0,0.5)] bg-white/[0.02] backdrop-blur-sm">
+                        <img
+                            src={images[selectedIndex]}
+                            alt="HD View"
+                            className="max-w-full max-h-[68vh] sm:max-h-[78vh] object-contain"
+                        />
+                    </div>
                 </div>
 
                 {/* Counter + swipe hint on mobile */}
-                <div className="mt-6 sm:mt-8 text-center">
-                    <span className="text-accent/50 text-[10px] sm:text-[10px] tracking-[.4em] uppercase">
-                        {selectedIndex + 1} / {images.length}
-                    </span>
-                    <p className="text-white/20 text-[9px] tracking-wider uppercase mt-2 sm:hidden">
+                <div className="mt-5 sm:mt-8 text-center">
+                    <div className="inline-flex items-center gap-3 bg-white/[0.03] backdrop-blur-md border border-white/[0.06] rounded-full px-5 py-2">
+                        <span className="text-accent/50 text-[10px] tracking-[.4em] uppercase">
+                            {selectedIndex + 1} / {images.length}
+                        </span>
+                    </div>
+                    <p className="text-white/20 text-[9px] tracking-wider uppercase mt-3 sm:hidden">
                         Swipe left or right to navigate
                     </p>
                 </div>

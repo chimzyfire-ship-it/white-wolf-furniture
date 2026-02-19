@@ -2,49 +2,49 @@ export const products = [
     {
         id: 2,
         name: "Royal Gilded Throne Set",
-        price: "$TBD",
+        price: "₦3,000,000",
         image: "/assets/real-photos/0ee9eaf8-e9d8-451d-b1e5-c33174f24cff.JPG",
         description: "Hand-carved ornate living set with gold leaf finishing and velvet upholstery."
     },
     {
         id: 3,
         name: "Tobacco Suede L-Sectional",
-        price: "$TBD",
+        price: "₦800,000",
         image: "/assets/real-photos/0f204c24-39fa-45f9-82ac-5ec44d58e84d.JPG",
         description: "Deep-seated L-shaped sectional in premium tobacco suede with contrast stitching."
     },
     {
         id: 4,
         name: "Artisanal Oak Shoe Rack",
-        price: "$TBD",
+        price: "₦150,000",
         image: "/assets/real-photos/2448f4bc-4921-4d12-b200-3c85fb6136f7.JPG",
         description: "Solid oak multi-tier storage unit with a natural protective lacquer finish."
     },
     {
         id: 5,
         name: "Luxury Velvet Bed Frame",
-        price: "$TBD",
+        price: "₦550,000",
         image: "/assets/real-photos/c63cfe8d-df2b-4cd3-b38f-69039154e99f.JPG",
         description: "Plush vertical-tufted headboard with gold inlay accents and reinforced base."
     },
     {
         id: 6,
         name: "Minimalist Wall Wine Rack",
-        price: "$TBD",
+        price: "₦150,000",
         image: "/assets/real-photos/b4beb8b7-60eb-4965-b64b-879d93945893.JPG",
         description: "Staggered geometric wine storage with integrated glass holders and matte finish."
     },
     {
         id: 7,
         name: "Custom Walk-in Closet",
-        price: "$TBD",
+        price: "₦1,200,000",
         image: "/assets/real-photos/4c913816-bd47-4660-9102-f8107b9a0b3e.JPG",
         description: "Tailor-made organizational system with soft-close drawers and integrated lighting."
     },
     {
         id: 8,
         name: "Glow Entertainment Center",
-        price: "$TBD",
+        price: "₦600,000",
         image: "/assets/real-photos/1eb29873-46dc-44f2-8225-77cbff6e9d6e.JPG",
         description: "Sleek media unit featuring floating shelves and ambient LED integration."
     }
