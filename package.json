@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "optimize": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
@@ -21,5 +22,8 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }

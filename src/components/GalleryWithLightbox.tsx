@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Maximize2, ChevronLeft, ChevronRight } from 'lucide-react';
 
+function thumbOf(src: string): string {
+    const name = src.split('/').pop()?.replace(/\.\w+$/, '') ?? '';
+    return `/assets/thumbs/${name}.webp`;
+}
+
 interface GalleryProps {
     images: string[];
 }
@@ -52,10 +57,11 @@ const GalleryWithLightbox: React.FC<GalleryProps> = ({ images }) => {
                             onClick={() => openLightbox(index)}
                         >
                             <img
-                                src={image}
+                                src={thumbOf(image)}
                                 alt={`Project ${index + 1}`}
                                 className={`w-full h-auto object-cover transition-all duration-1000 group-hover:scale-125 scale-105 ${viewedImages.has(index) ? 'grayscale-0' : 'grayscale group-hover:grayscale-0'}`}
                                 loading="lazy"
+                                decoding="async"
                             />
                             <div className="absolute inset-0 bg-primary/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center">
                                 <Maximize2 className="text-accent mb-3 w-8 h-8 animate-pulse" />

@@ -1,6 +1,6 @@
 ---
-import { galleryImages } from '../data/siteData';
-import GalleryWithLightbox from './GalleryWithLightbox';
+import { galleryCategories } from '../data/siteData';
+import CategoryGallery from './CategoryGallery';
 ---
 <section id="gallery" class="py-24 bg-[#030a13] min-h-[600px] lg:min-h-screen">
   <div class="container mx-auto px-6">
@@ -8,10 +8,10 @@ import GalleryWithLightbox from './GalleryWithLightbox';
       <h2 class="text-accent text-sm tracking-widest uppercase mb-2">Portfolio</h2>
       <h3 class="text-4xl md:text-5xl font-serif font-bold">Carpentry <span class="text-accent">&</span> Projects</h3>
       <p class="text-gray-500 mt-4 max-w-2xl mx-auto uppercase text-xs tracking-widest">
-        Showcasing over 80 custom craftsmanship projects. Click any image for HD detail.
+        Browse our collections. Select a category to explore.
       </p>
     </div>
 
-    <GalleryWithLightbox images={galleryImages} client:load />
+    <CategoryGallery categories={galleryCategories} client:load />
   </div>
 </section>
