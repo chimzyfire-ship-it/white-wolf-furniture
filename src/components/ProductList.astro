@@ -2,16 +2,16 @@
 import { products } from '../data/siteData';
 import ProductGallery from './ProductGallery';
 ---
-<section id="products" class="py-24 bg-primary relative overflow-hidden">
-  <!-- Subtle background text -->
-  <div class="absolute top-20 -left-10 text-[10rem] font-serif font-black text-white/5 select-none pointer-events-none uppercase">
+<section id="products" class="py-14 sm:py-20 md:py-24 bg-primary relative overflow-hidden">
+  <!-- Subtle background text (hidden on mobile to avoid clutter) -->
+  <div class="hidden sm:block absolute top-20 -left-10 text-[10rem] font-serif font-black text-white/5 select-none pointer-events-none uppercase">
     Collection
   </div>
 
-  <div class="container mx-auto px-6 relative z-10 mb-16">
+  <div class="container mx-auto px-4 sm:px-6 relative z-10 mb-8 sm:mb-16">
     <div>
-      <h2 class="text-accent text-sm tracking-widest uppercase mb-2">Curated Pieces</h2>
-      <h3 class="text-4xl md:text-5xl font-serif font-bold">Furniture <span class="text-accent">&</span> Pricing</h3>
+      <h2 class="text-accent text-[10px] sm:text-sm tracking-[.3em] sm:tracking-widest uppercase mb-1.5 sm:mb-2 font-semibold">Curated Pieces</h2>
+      <h3 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold">Furniture <span class="text-accent">&</span> Pricing</h3>
     </div>
   </div>
 

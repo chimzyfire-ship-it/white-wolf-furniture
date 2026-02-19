@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { GalleryCategory } from '../data/siteData';
@@ -33,7 +33,8 @@ const CategoryCard: React.FC<{
         className="group relative cursor-pointer"
         onClick={onClick}
     >
-        <div className="relative overflow-hidden rounded-2xl aspect-[4/5] md:aspect-[3/4]">
+        {/* Mobile: shorter aspect ratio for snappy scrolling. Desktop: taller elegant cards */}
+        <div className="relative overflow-hidden rounded-2xl aspect-[5/4] sm:aspect-[4/5] md:aspect-[3/4]">
             {/* Cover image */}
             <img
                 src={thumbOf(category.cover)}
@@ -43,8 +44,8 @@ const CategoryCard: React.FC<{
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
             />
 
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#051020] via-[#051020]/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+            {/* Gradient overlay — heavier on mobile for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#051020] via-[#051020]/50 to-transparent opacity-85 sm:opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
 
             {/* Glow accent on hover */}
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
@@ -52,28 +53,38 @@ const CategoryCard: React.FC<{
             />
 
             {/* Content */}
-            <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-                <span className="text-accent text-[10px] tracking-[.4em] uppercase font-medium mb-2 opacity-70 group-hover:opacity-100 transition-opacity">
+            <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-6 md:p-8">
+                <span className="text-accent text-[11px] sm:text-[10px] tracking-[.3em] sm:tracking-[.4em] uppercase font-semibold mb-1.5 sm:mb-2 opacity-80 group-hover:opacity-100 transition-opacity">
                     {category.tagline}
                 </span>
-                <h4 className="text-2xl md:text-3xl font-serif font-bold text-white mb-2 group-hover:translate-x-2 transition-transform duration-500">
+                <h4 className="text-2xl sm:text-2xl md:text-3xl font-serif font-bold text-white mb-1.5 sm:mb-2 group-hover:translate-x-2 transition-transform duration-500">
                     {category.name}
                 </h4>
-                <p className="text-gray-400 text-sm leading-relaxed max-w-xs opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+                <p className="text-gray-300 sm:text-gray-400 text-xs sm:text-sm leading-relaxed max-w-xs opacity-80 sm:opacity-0 group-hover:opacity-100 transition-all duration-500 sm:translate-y-2 sm:group-hover:translate-y-0">
                     {category.description}
                 </p>
 
-                {/* Item count */}
-                <div className="mt-4 flex items-center gap-3">
-                    <div className="h-px flex-1 bg-accent/20 group-hover:bg-accent/40 transition-colors" />
-                    <span className="text-accent/60 text-[10px] tracking-[.3em] uppercase group-hover:text-accent transition-colors">
-                        {category.images.length > 0 ? `${category.images.length} Projects` : 'Coming Soon'}
+                {/* Item count + "Tap to explore" on mobile */}
+                <div className="mt-3 sm:mt-4 flex items-center gap-3">
+                    <div className="h-px flex-1 bg-accent/30 sm:bg-accent/20 group-hover:bg-accent/40 transition-colors" />
+                    <span className="text-accent/70 sm:text-accent/60 text-[10px] sm:text-[10px] tracking-[.25em] sm:tracking-[.3em] uppercase font-medium group-hover:text-accent transition-colors">
+                        {category.images.length > 0
+                            ? `${category.images.length} Projects`
+                            : 'Coming Soon'
+                        }
                     </span>
                 </div>
             </div>
 
             {/* Corner accent */}
-            <div className="absolute top-6 right-6 w-8 h-8 border-t border-r border-accent/20 group-hover:border-accent/50 group-hover:w-10 group-hover:h-10 transition-all duration-500 rounded-tr-lg" />
+            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 w-7 h-7 sm:w-8 sm:h-8 border-t border-r border-accent/25 group-hover:border-accent/50 group-hover:w-9 group-hover:h-9 sm:group-hover:w-10 sm:group-hover:h-10 transition-all duration-500 rounded-tr-lg" />
+
+            {/* Mobile tap indicator */}
+            <div className="absolute top-4 left-4 sm:hidden">
+                <div className="bg-white/10 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10">
+                    <span className="text-[9px] text-white/70 tracking-wider uppercase font-medium">Tap to explore</span>
+                </div>
+            </div>
         </div>
     </motion.div>
 );
@@ -83,7 +94,7 @@ const ImageGrid: React.FC<{
     images: string[];
     onImageClick: (index: number) => void;
 }> = ({ images, onImageClick }) => (
-    <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
+    <div className="columns-2 sm:columns-2 lg:columns-3 gap-3 sm:gap-5 space-y-3 sm:space-y-5">
         {images.map((image, index) => (
             <motion.div
                 key={image}
@@ -93,7 +104,7 @@ const ImageGrid: React.FC<{
                 className="break-inside-avoid"
             >
                 <div
-                    className="group relative overflow-hidden rounded-xl cursor-pointer bg-white/[0.02]"
+                    className="group relative overflow-hidden rounded-lg sm:rounded-xl cursor-pointer bg-white/[0.02]"
                     onClick={() => onImageClick(index)}
                 >
                     <img
@@ -104,8 +115,8 @@ const ImageGrid: React.FC<{
                         className="w-full h-auto object-cover transition-all duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-primary/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center">
-                        <Maximize2 className="text-accent mb-3 w-7 h-7" />
-                        <span className="text-[9px] tracking-[.5em] uppercase font-bold text-white px-4 py-2 border border-white/10 rounded bg-white/5 backdrop-blur-sm">
+                        <Maximize2 className="text-accent mb-2 sm:mb-3 w-5 h-5 sm:w-7 sm:h-7" />
+                        <span className="text-[8px] sm:text-[9px] tracking-[.4em] sm:tracking-[.5em] uppercase font-bold text-white px-3 sm:px-4 py-1.5 sm:py-2 border border-white/10 rounded bg-white/5 backdrop-blur-sm">
                             View HD
                         </span>
                     </div>
@@ -122,71 +133,128 @@ const Lightbox: React.FC<{
     onClose: () => void;
     onNext: () => void;
     onPrev: () => void;
-}> = ({ images, selectedIndex, onClose, onNext, onPrev }) => (
-    <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100] bg-[#030a13]/98 backdrop-blur-xl flex items-center justify-center p-4 md:p-12 cursor-pointer"
-        onClick={onClose}
-    >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(160,174,192,0.08)_0%,transparent_70%)] pointer-events-none" />
+}> = ({ images, selectedIndex, onClose, onNext, onPrev }) => {
+    // Touch/swipe support for mobile
+    const [touchStart, setTouchStart] = useState<number | null>(null);
+    const [touchEnd, setTouchEnd] = useState<number | null>(null);
+    const minSwipeDistance = 50;
 
-        <button className="absolute top-6 right-6 text-white/30 hover:text-white transition-all hover:rotate-90 p-2 z-[110]" onClick={onClose}>
-            <X size={36} strokeWidth={1} />
-        </button>
+    const onTouchStart = (e: React.TouchEvent) => {
+        setTouchEnd(null);
+        setTouchStart(e.targetTouches[0].clientX);
+    };
 
-        <button
-            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/20 hover:text-white hover:bg-white/5 rounded-full transition-all p-3 z-[110]"
-            onClick={(e) => { e.stopPropagation(); onPrev(); }}
-        >
-            <ChevronLeft size={40} strokeWidth={1} />
-        </button>
+    const onTouchMove = (e: React.TouchEvent) => {
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
 
-        <button
-            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/20 hover:text-white hover:bg-white/5 rounded-full transition-all p-3 z-[110]"
-            onClick={(e) => { e.stopPropagation(); onNext(); }}
-        >
-            <ChevronRight size={40} strokeWidth={1} />
-        </button>
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+        const distance = touchStart - touchEnd;
+        if (Math.abs(distance) >= minSwipeDistance) {
+            if (distance > 0) onNext();
+            else onPrev();
+        }
+    };
 
+    // Keyboard nav
+    useEffect(() => {
+        const handleKey = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') onClose();
+            if (e.key === 'ArrowRight') onNext();
+            if (e.key === 'ArrowLeft') onPrev();
+        };
+        window.addEventListener('keydown', handleKey);
+        return () => window.removeEventListener('keydown', handleKey);
+    }, [onClose, onNext, onPrev]);
+
+    // Lock body scroll on mobile
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => { document.body.style.overflow = ''; };
+    }, []);
+
+    return (
         <motion.div
-            key={selectedIndex}
-            initial={{ scale: 0.85, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.85, opacity: 0 }}
-            transition={{ type: 'spring', damping: 28, stiffness: 220 }}
-            className="relative max-w-5xl w-full flex flex-col items-center"
-            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-[#030a13]/98 backdrop-blur-xl flex items-center justify-center p-3 sm:p-4 md:p-12"
+            onClick={onClose}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
         >
-            <div className="relative group">
-                <div className="absolute -inset-4 bg-accent/10 blur-2xl rounded-full opacity-40 group-hover:opacity-70 transition-opacity" />
-                {/* Full-res original for lightbox */}
-                <img
-                    src={images[selectedIndex]}
-                    alt="HD View"
-                    className="relative max-w-full max-h-[78vh] object-contain shadow-[0_0_60px_rgba(0,0,0,0.6)] border border-white/5 rounded-lg"
-                />
-            </div>
-            <div className="mt-8 text-center">
-                <span className="text-accent/50 text-[10px] tracking-[.4em] uppercase">{selectedIndex + 1} / {images.length}</span>
-            </div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(160,174,192,0.08)_0%,transparent_70%)] pointer-events-none" />
+
+            {/* Close — large touch target on mobile */}
+            <button
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/50 hover:text-white active:text-white transition-all hover:rotate-90 p-2.5 sm:p-2 z-[110] bg-white/5 sm:bg-transparent rounded-full active:bg-white/10"
+                onClick={(e) => { e.stopPropagation(); onClose(); }}
+            >
+                <X size={28} strokeWidth={1.5} className="sm:w-9 sm:h-9" />
+            </button>
+
+            {/* Nav arrows — larger on mobile */}
+            <button
+                className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/30 hover:text-white active:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all p-2 sm:p-3 z-[110]"
+                onClick={(e) => { e.stopPropagation(); onPrev(); }}
+            >
+                <ChevronLeft size={32} strokeWidth={1.5} className="sm:w-10 sm:h-10" />
+            </button>
+
+            <button
+                className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/30 hover:text-white active:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all p-2 sm:p-3 z-[110]"
+                onClick={(e) => { e.stopPropagation(); onNext(); }}
+            >
+                <ChevronRight size={32} strokeWidth={1.5} className="sm:w-10 sm:h-10" />
+            </button>
+
+            <motion.div
+                key={selectedIndex}
+                initial={{ scale: 0.85, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.85, opacity: 0 }}
+                transition={{ type: 'spring', damping: 28, stiffness: 220 }}
+                className="relative max-w-5xl w-full flex flex-col items-center px-8 sm:px-0"
+                onClick={(e) => e.stopPropagation()}
+            >
+                <div className="relative group">
+                    <div className="absolute -inset-4 bg-accent/10 blur-2xl rounded-full opacity-40 group-hover:opacity-70 transition-opacity" />
+                    {/* Full-res original for lightbox */}
+                    <img
+                        src={images[selectedIndex]}
+                        alt="HD View"
+                        className="relative max-w-full max-h-[70vh] sm:max-h-[78vh] object-contain shadow-[0_0_60px_rgba(0,0,0,0.6)] border border-white/5 rounded-lg"
+                    />
+                </div>
+
+                {/* Counter + swipe hint on mobile */}
+                <div className="mt-6 sm:mt-8 text-center">
+                    <span className="text-accent/50 text-[10px] sm:text-[10px] tracking-[.4em] uppercase">
+                        {selectedIndex + 1} / {images.length}
+                    </span>
+                    <p className="text-white/20 text-[9px] tracking-wider uppercase mt-2 sm:hidden">
+                        Swipe left or right to navigate
+                    </p>
+                </div>
+            </motion.div>
         </motion.div>
-    </motion.div>
-);
+    );
+};
 
 // ─── Empty State ─────────────────────────────────────────────────────
 const EmptyState: React.FC<{ categoryName: string }> = ({ categoryName }) => (
     <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center py-20"
+        className="text-center py-16 sm:py-20"
     >
-        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-accent/5 border border-accent/10 flex items-center justify-center">
-            <Maximize2 className="w-8 h-8 text-accent/30" />
+        <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-5 sm:mb-6 rounded-full bg-accent/5 border border-accent/10 flex items-center justify-center">
+            <Maximize2 className="w-6 h-6 sm:w-8 sm:h-8 text-accent/30" />
         </div>
-        <h4 className="text-xl font-serif text-white/60 mb-2">Coming Soon</h4>
-        <p className="text-gray-500 text-sm max-w-md mx-auto">
+        <h4 className="text-lg sm:text-xl font-serif text-white/60 mb-2">Coming Soon</h4>
+        <p className="text-gray-500 text-xs sm:text-sm max-w-md mx-auto">
             Our {categoryName.toLowerCase()} collection is being photographed. Check back soon for the full gallery.
         </p>
     </motion.div>
@@ -214,8 +282,17 @@ const CategoryGallery: React.FC<CategoryGalleryProps> = ({ categories }) => {
         }
     }, [lightboxIndex, activeCat]);
 
+    // Scroll to top of gallery section when entering a category
+    const handleCategoryClick = useCallback((catId: string) => {
+        setActiveCategory(catId);
+        // Minor delay to let animation start, then scroll
+        setTimeout(() => {
+            document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    }, []);
+
     return (
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container mx-auto px-0 sm:px-4 md:px-6">
             <AnimatePresence mode="wait">
                 {activeCategory === null ? (
                     /* ─── Category Cards View ─── */
@@ -226,13 +303,13 @@ const CategoryGallery: React.FC<CategoryGalleryProps> = ({ categories }) => {
                         exit={{ opacity: 0, x: -40 }}
                         transition={{ duration: 0.4 }}
                     >
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                             {categories.map((cat, i) => (
                                 <CategoryCard
                                     key={cat.id}
                                     category={cat}
                                     index={i}
-                                    onClick={() => setActiveCategory(cat.id)}
+                                    onClick={() => handleCategoryClick(cat.id)}
                                 />
                             ))}
                         </div>
@@ -246,27 +323,29 @@ const CategoryGallery: React.FC<CategoryGalleryProps> = ({ categories }) => {
                         exit={{ opacity: 0, x: 40 }}
                         transition={{ duration: 0.4 }}
                     >
-                        {/* Back button + Category header */}
-                        <div className="mb-10">
+                        {/* Back button + Category header — sticky on mobile */}
+                        <div className="mb-6 sm:mb-10">
                             <button
                                 onClick={() => { setActiveCategory(null); setLightboxIndex(null); }}
-                                className="group flex items-center gap-3 text-accent/50 hover:text-accent transition-colors mb-6"
+                                className="group flex items-center gap-2.5 sm:gap-3 text-accent/60 hover:text-accent active:text-accent transition-colors mb-4 sm:mb-6 py-2 -ml-1"
                             >
-                                <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-                                <span className="text-[11px] tracking-[.3em] uppercase font-medium">All Categories</span>
+                                <div className="w-8 h-8 sm:w-auto sm:h-auto rounded-full bg-accent/5 sm:bg-transparent flex items-center justify-center">
+                                    <ArrowLeft size={16} className="sm:w-[18px] sm:h-[18px] group-hover:-translate-x-1 transition-transform" />
+                                </div>
+                                <span className="text-[11px] sm:text-[11px] tracking-[.25em] sm:tracking-[.3em] uppercase font-semibold">All Categories</span>
                             </button>
 
-                            <div className="flex items-end gap-4 border-b border-white/5 pb-6">
+                            <div className="flex items-end gap-4 border-b border-white/5 pb-4 sm:pb-6">
                                 <div>
-                                    <span className="text-accent/40 text-[10px] tracking-[.4em] uppercase block mb-1">
+                                    <span className="text-accent/50 text-[10px] sm:text-[10px] tracking-[.3em] sm:tracking-[.4em] uppercase block mb-1">
                                         {activeCat?.tagline}
                                     </span>
-                                    <h4 className="text-3xl md:text-4xl font-serif font-bold text-white">
+                                    <h4 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white">
                                         {activeCat?.name}
                                     </h4>
                                 </div>
                                 {activeCat && activeCat.images.length > 0 && (
-                                    <span className="text-accent/30 text-xs tracking-widest ml-auto hidden md:block">
+                                    <span className="text-accent/30 text-[10px] sm:text-xs tracking-widest ml-auto">
                                         {activeCat.images.length} projects
                                     </span>
                                 )}
@@ -278,6 +357,19 @@ const CategoryGallery: React.FC<CategoryGalleryProps> = ({ categories }) => {
                             <ImageGrid images={activeCat.images} onImageClick={openLightbox} />
                         ) : (
                             <EmptyState categoryName={activeCat?.name ?? ''} />
+                        )}
+
+                        {/* Bottom back button for mobile — after scrolling through images */}
+                        {activeCat && activeCat.images.length > 6 && (
+                            <div className="mt-10 sm:mt-12 pt-6 border-t border-white/5 flex justify-center sm:hidden">
+                                <button
+                                    onClick={() => { setActiveCategory(null); setLightboxIndex(null); }}
+                                    className="flex items-center gap-2 text-accent/50 active:text-accent py-3 px-6 rounded-full bg-accent/5 border border-accent/10"
+                                >
+                                    <ArrowLeft size={14} />
+                                    <span className="text-[10px] tracking-[.3em] uppercase font-semibold">Back to Categories</span>
+                                </button>
+                            </div>
                         )}
                     </motion.div>
                 )}

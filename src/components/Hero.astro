@@ -15,22 +15,22 @@ import QuoteButton from './QuoteButton';
         <img 
           src="/logo.png" 
           alt="White Wolf Furniture" 
-          class="relative w-64 md:w-80 drop-shadow-[0_0_50px_rgba(255,255,255,0.1)] animate-fade-in-up"
+          class="relative w-44 sm:w-64 md:w-80 drop-shadow-[0_0_50px_rgba(255,255,255,0.1)] animate-fade-in-up"
         />
       </div>
     </div>
     
-    <h1 class="text-5xl md:text-8xl font-serif font-black tracking-tighter mb-6 opacity-0 animate-fade-in-up delay-200 uppercase text-glow">
-      WHITE WOLF <span class="text-accent underline decoration-accent/20 underline-offset-[12px]">FURNITURE</span>
+    <h1 class="text-4xl sm:text-5xl md:text-8xl font-serif font-black tracking-tighter mb-4 sm:mb-6 opacity-0 animate-fade-in-up delay-200 uppercase text-glow">
+      WHITE WOLF <span class="text-accent underline decoration-accent/20 underline-offset-[8px] sm:underline-offset-[12px]">FURNITURE</span>
     </h1>
     
-    <p class="text-lg md:text-2xl font-sans text-accent/80 max-w-3xl mx-auto opacity-0 animate-fade-in-up delay-500 uppercase tracking-[0.5em] leading-relaxed mb-12">
+    <p class="text-xs sm:text-lg md:text-2xl font-sans text-accent/80 max-w-3xl mx-auto opacity-0 animate-fade-in-up delay-500 uppercase tracking-[0.2em] sm:tracking-[0.5em] leading-relaxed mb-8 sm:mb-12">
       Artisanal Craftsmanship • Timeless Industrial Design
     </p>
 
-    <div class="flex flex-col md:flex-row items-center justify-center gap-6 opacity-0 animate-fade-in-up delay-700">
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 opacity-0 animate-fade-in-up delay-700">
       <QuoteButton client:load />
-      <a href="#products" class="text-sm font-bold tracking-[.4em] uppercase text-gray-400 hover:text-accent transition-all duration-300">
+      <a href="#products" class="text-xs sm:text-sm font-bold tracking-[.3em] sm:tracking-[.4em] uppercase text-gray-400 hover:text-accent active:text-accent transition-all duration-300">
         View Collection
       </a>
     </div>
