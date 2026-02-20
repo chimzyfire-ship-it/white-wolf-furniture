@@ -46,7 +46,11 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ products }) => {
     useEffect(() => {
         if (selectedProduct !== null) {
             document.body.style.overflow = 'hidden';
-            return () => { document.body.style.overflow = ''; };
+            document.body.style.touchAction = 'none';
+            return () => {
+                document.body.style.overflow = '';
+                document.body.style.touchAction = '';
+            };
         }
     }, [selectedProduct]);
 
@@ -116,11 +120,11 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ products }) => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 md:p-12"
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-6 md:p-12 h-[100dvh] w-screen overflow-hidden touch-none"
                         style={{
-                            background: 'radial-gradient(ellipse at center, rgba(5,16,32,0.92) 0%, rgba(3,10,19,0.98) 70%)',
-                            backdropFilter: 'blur(24px)',
-                            WebkitBackdropFilter: 'blur(24px)',
+                            background: 'radial-gradient(ellipse at center, rgba(5,16,32,0.95) 0%, rgba(3,10,19,0.99) 70%)',
+                            backdropFilter: 'blur(8px)',
+                            WebkitBackdropFilter: 'blur(8px)',
                         }}
                         onClick={closeLightbox}
                         onTouchStart={onTouchStart}
@@ -133,13 +137,16 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ products }) => {
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/[0.03] rounded-full blur-[120px]" />
                         </div>
 
-                        {/* Close button */}
-                        <button
-                            className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/40 hover:text-white active:text-white transition-all hover:rotate-90 p-2.5 sm:p-2 z-[110] bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-sm border border-white/5"
-                            onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
-                        >
-                            <X size={24} strokeWidth={1.5} className="sm:w-7 sm:h-7" />
-                        </button>
+                        {/* Top Bar with Back Button */}
+                        <div className="absolute top-0 left-0 right-0 p-4 sm:p-6 flex justify-between items-center z-[110] bg-gradient-to-b from-black/60 to-transparent pointer-events-none">
+                            <button
+                                className="flex items-center gap-2 text-white/80 hover:text-white transition-all bg-white/10 hover:bg-white/20 px-4 py-2.5 rounded-full backdrop-blur-md border border-white/10 pointer-events-auto"
+                                onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
+                            >
+                                <ChevronLeft size={20} strokeWidth={2} />
+                                <span className="text-xs sm:text-sm uppercase tracking-[0.2em] font-bold">Back</span>
+                            </button>
+                        </div>
 
                         {/* Nav arrows */}
                         <button
@@ -163,21 +170,21 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ products }) => {
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.88, opacity: 0, y: 20 }}
                             transition={{ type: 'spring', damping: 30, stiffness: 260 }}
-                            className="relative max-w-4xl w-full flex flex-col items-center"
+                            className="relative w-full h-full sm:max-w-4xl flex flex-col items-center justify-center"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Image with glassmorphic frame */}
-                            <div className="relative group w-full flex justify-center">
+                            <div className="relative group w-full flex justify-center items-center flex-1">
                                 {/* Glow aura behind image */}
                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                                     <div className="w-[80%] h-[80%] bg-accent/[0.06] blur-[80px] rounded-3xl animate-pulse" style={{ animationDuration: '4s' }} />
                                 </div>
 
-                                <div className="relative rounded-xl overflow-hidden border border-white/[0.08] shadow-[0_0_80px_rgba(0,0,0,0.5)] bg-white/[0.02] backdrop-blur-sm">
+                                <div className="relative rounded-xl overflow-hidden border border-white/[0.08] shadow-[0_0_80px_rgba(0,0,0,0.5)] bg-white/[0.02] backdrop-blur-sm max-h-[70dvh] sm:max-h-[65vh] flex items-center justify-center">
                                     <img
                                         src={products[selectedProduct].image}
                                         alt={products[selectedProduct].name}
-                                        className="max-w-full max-h-[55vh] sm:max-h-[65vh] object-contain"
+                                        className="max-w-full max-h-[70dvh] sm:max-h-[65vh] object-contain block mx-auto"
                                     />
                                 </div>
                             </div>

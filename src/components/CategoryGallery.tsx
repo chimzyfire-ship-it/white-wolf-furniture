@@ -171,7 +171,11 @@ const Lightbox: React.FC<{
     // Lock body scroll on mobile
     useEffect(() => {
         document.body.style.overflow = 'hidden';
-        return () => { document.body.style.overflow = ''; };
+        document.body.style.touchAction = 'none';
+        return () => {
+            document.body.style.overflow = '';
+            document.body.style.touchAction = '';
+        };
     }, []);
 
     return (
@@ -180,11 +184,11 @@ const Lightbox: React.FC<{
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-12"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 md:p-12 h-[100dvh] w-screen overflow-hidden touch-none"
             style={{
-                background: 'radial-gradient(ellipse at center, rgba(5,16,32,0.92) 0%, rgba(3,10,19,0.98) 70%)',
-                backdropFilter: 'blur(24px)',
-                WebkitBackdropFilter: 'blur(24px)',
+                background: 'radial-gradient(ellipse at center, rgba(5,16,32,0.95) 0%, rgba(3,10,19,0.99) 70%)',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)',
             }}
             onClick={onClose}
             onTouchStart={onTouchStart}
@@ -197,13 +201,16 @@ const Lightbox: React.FC<{
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/[0.04] rounded-full blur-[100px]" />
             </div>
 
-            {/* Close — large touch target on mobile */}
-            <button
-                className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/40 hover:text-white active:text-white transition-all hover:rotate-90 p-2.5 sm:p-2 z-[110] bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-sm border border-white/5"
-                onClick={(e) => { e.stopPropagation(); onClose(); }}
-            >
-                <X size={24} strokeWidth={1.5} className="sm:w-8 sm:h-8" />
-            </button>
+            {/* Top Bar with Back Button */}
+            <div className="absolute top-0 left-0 right-0 p-4 sm:p-6 flex justify-between items-center z-[110] bg-gradient-to-b from-black/60 to-transparent pointer-events-none">
+                <button
+                    className="flex items-center gap-2 text-white/80 hover:text-white transition-all bg-white/10 hover:bg-white/20 px-4 py-2.5 rounded-full backdrop-blur-md border border-white/10 pointer-events-auto"
+                    onClick={(e) => { e.stopPropagation(); onClose(); }}
+                >
+                    <ArrowLeft size={20} strokeWidth={2} />
+                    <span className="text-xs sm:text-sm uppercase tracking-[0.2em] font-bold">Back</span>
+                </button>
+            </div>
 
             {/* Nav arrows */}
             <button
@@ -227,27 +234,27 @@ const Lightbox: React.FC<{
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.88, opacity: 0, y: 15 }}
                 transition={{ type: 'spring', damping: 30, stiffness: 260 }}
-                className="relative max-w-5xl w-full flex flex-col items-center px-6 sm:px-0"
+                className="relative w-full h-full sm:max-w-5xl flex flex-col items-center justify-center px-0 sm:px-0"
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className="relative group w-full flex justify-center">
+                <div className="relative group w-full flex justify-center items-center flex-1">
                     {/* Glow aura behind image */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                         <div className="w-[70%] h-[70%] bg-accent/[0.05] blur-[80px] rounded-3xl animate-pulse" style={{ animationDuration: '4s' }} />
                     </div>
 
                     {/* Glassmorphic image frame */}
-                    <div className="relative rounded-xl overflow-hidden border border-white/[0.08] shadow-[0_0_80px_rgba(0,0,0,0.5)] bg-white/[0.02] backdrop-blur-sm">
+                    <div className="relative rounded-xl overflow-hidden border border-white/[0.08] shadow-[0_0_80px_rgba(0,0,0,0.5)] bg-white/[0.02] backdrop-blur-sm max-h-[80dvh] sm:max-h-[78vh] flex items-center justify-center">
                         <img
                             src={images[selectedIndex]}
                             alt="HD View"
-                            className="max-w-full max-h-[68vh] sm:max-h-[78vh] object-contain"
+                            className="max-w-full max-h-[80dvh] sm:max-h-[78vh] object-contain block mx-auto"
                         />
                     </div>
                 </div>
 
                 {/* Counter + swipe hint on mobile */}
-                <div className="mt-5 sm:mt-8 text-center">
+                <div className="pb-6 sm:pb-8 text-center shrink-0">
                     <div className="inline-flex items-center gap-3 bg-white/[0.03] backdrop-blur-md border border-white/[0.06] rounded-full px-5 py-2">
                         <span className="text-accent/50 text-[10px] tracking-[.4em] uppercase">
                             {selectedIndex + 1} / {images.length}
