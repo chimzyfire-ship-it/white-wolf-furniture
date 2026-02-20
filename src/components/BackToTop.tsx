@@ -19,10 +19,8 @@ const BackToTop: React.FC = () => {
     }, []);
 
     const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        });
+        // Let the browser handle css smooth scroll to top
+        window.scrollTo(0, 0);
     };
 
     return (

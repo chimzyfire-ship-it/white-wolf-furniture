@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { GalleryCategory } from '../data/siteData';
@@ -402,17 +403,20 @@ const CategoryGallery: React.FC<CategoryGalleryProps> = ({ categories }) => {
             </AnimatePresence>
 
             {/* Lightbox */}
-            <AnimatePresence>
-                {lightboxIndex !== null && activeCat && activeCat.images.length > 0 && (
-                    <Lightbox
-                        images={activeCat.images}
-                        selectedIndex={lightboxIndex}
-                        onClose={closeLightbox}
-                        onNext={nextImage}
-                        onPrev={prevImage}
-                    />
-                )}
-            </AnimatePresence>
+            {typeof document !== 'undefined' && createPortal(
+                <AnimatePresence>
+                    {lightboxIndex !== null && activeCat && activeCat.images.length > 0 && (
+                        <Lightbox
+                            images={activeCat.images}
+                            selectedIndex={lightboxIndex}
+                            onClose={closeLightbox}
+                            onNext={nextImage}
+                            onPrev={prevImage}
+                        />
+                    )}
+                </AnimatePresence>,
+                document.body
+            )}
         </div>
     );
 };

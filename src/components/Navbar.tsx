@@ -24,23 +24,10 @@ const Navbar = () => {
         { name: 'Contacts', href: '#contact' },
     ];
 
-    const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-        e.preventDefault();
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        // Let the browser handle the smooth URL hash jump naturally via CSS
+        // Only close the mobile menu immediately
         closeMenu();
-
-        const targetId = href.replace('#', '');
-        const elem = document.getElementById(targetId);
-
-        if (elem) {
-            // First scroll to the approximate position
-            elem.scrollIntoView({ behavior: 'smooth' });
-
-            // If it's a dynamic section like gallery, re-check after a short delay
-            // to account for any layout shifts from loading content
-            setTimeout(() => {
-                elem.scrollIntoView({ behavior: 'smooth' });
-            }, 500);
-        }
     };
 
     return (
@@ -57,7 +44,7 @@ const Navbar = () => {
                         <a
                             key={link.name}
                             href={link.href}
-                            onClick={(e) => scrollToSection(e, link.href)}
+                            onClick={(e) => handleNavClick(e, link.href)}
                             className="hover:text-accent transition-all duration-300"
                         >
                             {link.name}
@@ -80,7 +67,7 @@ const Navbar = () => {
                         <a
                             key={link.name}
                             href={link.href}
-                            onClick={(e) => scrollToSection(e, link.href)}
+                            onClick={(e) => handleNavClick(e, link.href)}
                             className={`text-2xl font-serif font-black tracking-[.2em] uppercase transition-all duration-500 hover:text-accent ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                             style={{ transitionDelay: `${index * 100}ms` }}
                         >

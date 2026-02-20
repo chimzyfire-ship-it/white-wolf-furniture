@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Info } from 'lucide-react';
 
@@ -113,102 +114,105 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ products }) => {
             </div>
 
             {/* ─── Pro Lightbox ──────────────────────────────────────────── */}
-            <AnimatePresence>
-                {selectedProduct !== null && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-6 md:p-12 h-[100dvh] w-screen overflow-hidden touch-none"
-                        style={{
-                            background: 'radial-gradient(ellipse at center, rgba(5,16,32,0.95) 0%, rgba(3,10,19,0.99) 70%)',
-                            backdropFilter: 'blur(8px)',
-                            WebkitBackdropFilter: 'blur(8px)',
-                        }}
-                        onClick={closeLightbox}
-                        onTouchStart={onTouchStart}
-                        onTouchMove={onTouchMove}
-                        onTouchEnd={onTouchEnd}
-                    >
-                        {/* Ambient glow */}
-                        <div className="absolute inset-0 pointer-events-none">
-                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(160,174,192,0.06)_0%,transparent_60%)]" />
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/[0.03] rounded-full blur-[120px]" />
-                        </div>
-
-                        {/* Top Bar with Back Button */}
-                        <div className="absolute top-0 left-0 right-0 p-4 sm:p-6 flex justify-between items-center z-[110] bg-gradient-to-b from-black/60 to-transparent pointer-events-none">
-                            <button
-                                className="flex items-center gap-2 text-white/80 hover:text-white transition-all bg-white/10 hover:bg-white/20 px-4 py-2.5 rounded-full backdrop-blur-md border border-white/10 pointer-events-auto"
-                                onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
-                            >
-                                <ChevronLeft size={20} strokeWidth={2} />
-                                <span className="text-xs sm:text-sm uppercase tracking-[0.2em] font-bold">Back</span>
-                            </button>
-                        </div>
-
-                        {/* Nav arrows */}
-                        <button
-                            className="absolute left-2 sm:left-6 md:left-10 top-1/2 -translate-y-1/2 text-white/25 hover:text-white active:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all p-2 sm:p-3 z-[110] backdrop-blur-sm border border-white/0 hover:border-white/5"
-                            onClick={(e) => { e.stopPropagation(); prevProduct(); }}
-                        >
-                            <ChevronLeft size={28} strokeWidth={1.5} className="sm:w-10 sm:h-10" />
-                        </button>
-
-                        <button
-                            className="absolute right-2 sm:right-6 md:right-10 top-1/2 -translate-y-1/2 text-white/25 hover:text-white active:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all p-2 sm:p-3 z-[110] backdrop-blur-sm border border-white/0 hover:border-white/5"
-                            onClick={(e) => { e.stopPropagation(); nextProduct(); }}
-                        >
-                            <ChevronRight size={28} strokeWidth={1.5} className="sm:w-10 sm:h-10" />
-                        </button>
-
-                        {/* Centered content */}
+            {typeof document !== 'undefined' && createPortal(
+                <AnimatePresence>
+                    {selectedProduct !== null && (
                         <motion.div
-                            key={selectedProduct}
-                            initial={{ scale: 0.88, opacity: 0, y: 20 }}
-                            animate={{ scale: 1, opacity: 1, y: 0 }}
-                            exit={{ scale: 0.88, opacity: 0, y: 20 }}
-                            transition={{ type: 'spring', damping: 30, stiffness: 260 }}
-                            className="relative w-full h-full sm:max-w-4xl flex flex-col items-center justify-center"
-                            onClick={(e) => e.stopPropagation()}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-6 md:p-12 h-[100dvh] w-screen overflow-hidden touch-none"
+                            style={{
+                                background: 'radial-gradient(ellipse at center, rgba(5,16,32,0.95) 0%, rgba(3,10,19,0.99) 70%)',
+                                backdropFilter: 'blur(8px)',
+                                WebkitBackdropFilter: 'blur(8px)',
+                            }}
+                            onClick={closeLightbox}
+                            onTouchStart={onTouchStart}
+                            onTouchMove={onTouchMove}
+                            onTouchEnd={onTouchEnd}
                         >
-                            {/* Image with glassmorphic frame */}
-                            <div className="relative group w-full flex justify-center items-center flex-1">
-                                {/* Glow aura behind image */}
-                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                    <div className="w-[80%] h-[80%] bg-accent/[0.06] blur-[80px] rounded-3xl animate-pulse" style={{ animationDuration: '4s' }} />
-                                </div>
-
-                                <div className="relative rounded-xl overflow-hidden border border-white/[0.08] shadow-[0_0_80px_rgba(0,0,0,0.5)] bg-white/[0.02] backdrop-blur-sm max-h-[70dvh] sm:max-h-[65vh] flex items-center justify-center">
-                                    <img
-                                        src={products[selectedProduct].image}
-                                        alt={products[selectedProduct].name}
-                                        className="max-w-full max-h-[70dvh] sm:max-h-[65vh] object-contain block mx-auto"
-                                    />
-                                </div>
+                            {/* Ambient glow */}
+                            <div className="absolute inset-0 pointer-events-none">
+                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(160,174,192,0.06)_0%,transparent_60%)]" />
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/[0.03] rounded-full blur-[120px]" />
                             </div>
 
-                            {/* Info panel below image */}
-                            <div className="mt-5 sm:mt-8 text-center w-full max-w-lg mx-auto px-4">
-                                <div className="bg-white/[0.03] backdrop-blur-md border border-white/[0.06] rounded-xl px-5 py-4 sm:px-8 sm:py-5">
-                                    <h3 className="text-lg sm:text-2xl font-serif font-bold mb-1">{products[selectedProduct].name}</h3>
-                                    <p className="text-accent text-base sm:text-xl font-sans font-bold mb-2 sm:mb-3">{products[selectedProduct].price}</p>
-                                    <div className="h-px w-12 bg-accent/20 mx-auto mb-2 sm:mb-3" />
-                                    <p className="text-gray-400 text-[11px] sm:text-sm leading-relaxed">
-                                        {products[selectedProduct].description}
-                                    </p>
+                            {/* Top Bar with Back Button */}
+                            <div className="absolute top-0 left-0 right-0 p-4 sm:p-6 flex justify-between items-center z-[110] bg-gradient-to-b from-black/60 to-transparent pointer-events-none">
+                                <button
+                                    className="flex items-center gap-2 text-white/80 hover:text-white transition-all bg-white/10 hover:bg-white/20 px-4 py-2.5 rounded-full backdrop-blur-md border border-white/10 pointer-events-auto"
+                                    onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
+                                >
+                                    <ChevronLeft size={20} strokeWidth={2} />
+                                    <span className="text-xs sm:text-sm uppercase tracking-[0.2em] font-bold">Back</span>
+                                </button>
+                            </div>
+
+                            {/* Nav arrows */}
+                            <button
+                                className="absolute left-2 sm:left-6 md:left-10 top-1/2 -translate-y-1/2 text-white/25 hover:text-white active:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all p-2 sm:p-3 z-[110] backdrop-blur-sm border border-white/0 hover:border-white/5"
+                                onClick={(e) => { e.stopPropagation(); prevProduct(); }}
+                            >
+                                <ChevronLeft size={28} strokeWidth={1.5} className="sm:w-10 sm:h-10" />
+                            </button>
+
+                            <button
+                                className="absolute right-2 sm:right-6 md:right-10 top-1/2 -translate-y-1/2 text-white/25 hover:text-white active:text-white hover:bg-white/5 active:bg-white/10 rounded-full transition-all p-2 sm:p-3 z-[110] backdrop-blur-sm border border-white/0 hover:border-white/5"
+                                onClick={(e) => { e.stopPropagation(); nextProduct(); }}
+                            >
+                                <ChevronRight size={28} strokeWidth={1.5} className="sm:w-10 sm:h-10" />
+                            </button>
+
+                            {/* Centered content */}
+                            <motion.div
+                                key={selectedProduct}
+                                initial={{ scale: 0.88, opacity: 0, y: 20 }}
+                                animate={{ scale: 1, opacity: 1, y: 0 }}
+                                exit={{ scale: 0.88, opacity: 0, y: 20 }}
+                                transition={{ type: 'spring', damping: 30, stiffness: 260 }}
+                                className="relative w-full h-full sm:max-w-4xl flex flex-col items-center justify-center"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                {/* Image with glassmorphic frame */}
+                                <div className="relative group w-full flex justify-center items-center flex-1">
+                                    {/* Glow aura behind image */}
+                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                        <div className="w-[80%] h-[80%] bg-accent/[0.06] blur-[80px] rounded-3xl animate-pulse" style={{ animationDuration: '4s' }} />
+                                    </div>
+
+                                    <div className="relative rounded-xl overflow-hidden border border-white/[0.08] shadow-[0_0_80px_rgba(0,0,0,0.5)] bg-white/[0.02] backdrop-blur-sm max-h-[70dvh] sm:max-h-[65vh] flex items-center justify-center">
+                                        <img
+                                            src={products[selectedProduct].image}
+                                            alt={products[selectedProduct].name}
+                                            className="max-w-full max-h-[70dvh] sm:max-h-[65vh] object-contain block mx-auto"
+                                        />
+                                    </div>
                                 </div>
 
-                                {/* Counter */}
-                                <span className="inline-block mt-3 sm:mt-5 text-accent/40 text-[10px] tracking-[.4em] uppercase">
-                                    {selectedProduct + 1} / {products.length}
-                                </span>
-                            </div>
+                                {/* Info panel below image */}
+                                <div className="mt-5 sm:mt-8 text-center w-full max-w-lg mx-auto px-4">
+                                    <div className="bg-white/[0.03] backdrop-blur-md border border-white/[0.06] rounded-xl px-5 py-4 sm:px-8 sm:py-5">
+                                        <h3 className="text-lg sm:text-2xl font-serif font-bold mb-1">{products[selectedProduct].name}</h3>
+                                        <p className="text-accent text-base sm:text-xl font-sans font-bold mb-2 sm:mb-3">{products[selectedProduct].price}</p>
+                                        <div className="h-px w-12 bg-accent/20 mx-auto mb-2 sm:mb-3" />
+                                        <p className="text-gray-400 text-[11px] sm:text-sm leading-relaxed">
+                                            {products[selectedProduct].description}
+                                        </p>
+                                    </div>
+
+                                    {/* Counter */}
+                                    <span className="inline-block mt-3 sm:mt-5 text-accent/40 text-[10px] tracking-[.4em] uppercase">
+                                        {selectedProduct + 1} / {products.length}
+                                    </span>
+                                </div>
+                            </motion.div>
                         </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    )}
+                </AnimatePresence>,
+                document.body
+            )}
         </div>
     );
 };
