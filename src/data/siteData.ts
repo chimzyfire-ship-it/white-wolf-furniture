@@ -47,6 +47,55 @@ export const products = [
         price: "₦600,000",
         image: "/assets/real-photos/1eb29873-46dc-44f2-8225-77cbff6e9d6e.JPG",
         description: "Sleek media unit featuring floating shelves and ambient LED integration."
+    },
+    {
+        id: 9,
+        name: "Elite Dynamic Island Kitchen",
+        price: "₦600,000",
+        image: "/assets/categories/kitchen-cabinets-wine-racks/935e9f8f-626c-4484-b29c-a2e9354914ee.JPG",
+        description: "Premium oak cabinetry featuring a dynamic center island with contrasting black countertops."
+    },
+    {
+        id: 10,
+        name: "Lumina Slatted Marble Console",
+        price: "₦500,000",
+        image: "/assets/categories/tv-consoles/10ace976-922d-4a0d-9709-7edd7f0858f4.JPG",
+        description: "Modern entertainment center featuring vertical wood slats, a marble-finish back panel, and ambient LED lighting."
+    },
+    {
+        id: 11,
+        name: "Modern 5-Pane Glass Accent Door",
+        price: "₦160,000",
+        image: "/assets/categories/doors/1084343f-584e-42d1-a87a-00599ef19355.JPG",
+        description: "Elegant single wooden door featuring five contemporary square glass panels arranged vertically."
+    },
+    {
+        id: 12,
+        name: "Floating Sommelier Rack",
+        price: "₦100,000",
+        image: "/assets/categories/kitchen-cabinets-wine-racks/01bf4130-f64a-441f-8751-cca07985e2fb.JPG",
+        description: "Space-saving wall-mounted bar unit with dedicated shelves for bottles and integrated stemware hangers."
+    },
+    {
+        id: 13,
+        name: "Artisan Wood & Ivory Kitchen Layout",
+        price: "₦600,000",
+        image: "/assets/categories/kitchen-cabinets-wine-racks/dea8dc18-9007-4a95-9173-0ca4311e657d.JPG",
+        description: "Expansive white cabinetry framed by warm natural wood trim, featuring intelligent storage solutions."
+    },
+    {
+        id: 14,
+        name: "Regal Velvet Tufted Bed Set",
+        price: "₦400,000",
+        image: "/assets/categories/beds/687c0605-8549-4bf1-ad6f-3cf37e424974.JPG",
+        description: "A commanding charcoal velvet bed frame with an intricately tufted extended headboard and customized padded foot bench."
+    },
+    {
+        id: 15,
+        name: "Sunrise Wood Corner Kitchen",
+        price: "₦700,000",
+        image: "/assets/categories/kitchen-cabinets-wine-racks/649ca29f-8896-496a-abee-32962a3073b4.JPG",
+        description: "A modern L-shaped layout accented by vibrant yellow overhead cabinets and deep wood base storage."
     }
 ];
 
