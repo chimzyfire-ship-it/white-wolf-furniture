@@ -70,13 +70,6 @@ export const products = [
         description: "Elegant single wooden door featuring five contemporary square glass panels arranged vertically."
     },
     {
-        id: 12,
-        name: "Floating Sommelier Rack",
-        price: "₦100,000",
-        image: "/assets/categories/kitchen-cabinets-wine-racks/01bf4130-f64a-441f-8751-cca07985e2fb.JPG",
-        description: "Space-saving wall-mounted bar unit with dedicated shelves for bottles and integrated stemware hangers."
-    },
-    {
         id: 13,
         name: "Artisan Wood & Ivory Kitchen Layout",
         price: "₦600,000",
