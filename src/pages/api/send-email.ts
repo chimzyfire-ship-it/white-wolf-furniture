@@ -27,8 +27,8 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const userEmail = import.meta.env.EMAIL_USER || process.env.EMAIL_USER || 'Whitewolffurniture@gmail.com';
-    const appPassword = import.meta.env.EMAIL_APP_PASSWORD || process.env.EMAIL_APP_PASSWORD || 'pykm ewol mssp rjil';
+    const userEmail = 'Whitewolffurniture@gmail.com';
+    const appPassword = 'pykm ewol mssp rjil';
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
