@@ -4,8 +4,6 @@ import { X, Send, Mail, User, MessageSquare, Phone, Loader2, CheckCircle2, Alert
 import { useStore } from '@nanostores/react';
 import { isQuoteModalOpen, closeQuoteModal } from '../store/quoteStore';
 
-const WEB3FORMS_KEY = '96980d13-934b-4d87-8062-bbffe1c968fd';
-
 type FormState = 'idle' | 'submitting' | 'success' | 'error';
 
 const QuoteModal: React.FC = () => {
@@ -19,12 +17,9 @@ const QuoteModal: React.FC = () => {
         setErrorMsg('');
 
         const formData = new FormData(e.currentTarget);
-        formData.append('access_key', WEB3FORMS_KEY);
-        formData.append('subject', 'New Quote Request — White Wolf Furniture');
-        formData.append('from_name', 'White Wolf Website');
 
         try {
-            const res = await fetch('https://api.web3forms.com/submit', {
+            const res = await fetch('/api/send-email', {
                 method: 'POST',
                 body: formData,
             });
