@@ -199,7 +199,7 @@ const Lightbox: React.FC<{
             {/* Ambient glow */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(160,174,192,0.06)_0%,transparent_60%)]" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/[0.04] rounded-full blur-[100px]" />
+                <div className="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/[0.04] rounded-full blur-[100px]" />
             </div>
 
             {/* Top Bar with Back Button */}
@@ -241,7 +241,7 @@ const Lightbox: React.FC<{
                 <div className="relative group w-full flex justify-center items-center flex-1">
                     {/* Glow aura behind image */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <div className="w-[70%] h-[70%] bg-accent/[0.05] blur-[80px] rounded-3xl animate-pulse" style={{ animationDuration: '4s' }} />
+                        <div className="hidden sm:block w-[70%] h-[70%] bg-accent/[0.05] blur-[80px] rounded-3xl animate-pulse" style={{ animationDuration: '4s' }} />
                     </div>
 
                     {/* Glassmorphic image frame */}

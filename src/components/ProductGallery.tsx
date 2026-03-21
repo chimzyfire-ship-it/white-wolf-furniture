@@ -89,6 +89,8 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ products }) => {
                             <img
                                 src={product.image}
                                 alt={product.name}
+                                loading="lazy"
+                                decoding="async"
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125 scale-110"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent opacity-40"></div>
@@ -136,7 +138,7 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ products }) => {
                             {/* Ambient glow */}
                             <div className="absolute inset-0 pointer-events-none">
                                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(160,174,192,0.06)_0%,transparent_60%)]" />
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/[0.03] rounded-full blur-[120px]" />
+                                <div className="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/[0.03] rounded-full blur-[120px]" />
                             </div>
 
                             {/* Top Bar with Back Button */}
@@ -179,7 +181,7 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ products }) => {
                                 <div className="relative group w-full flex justify-center items-center flex-1">
                                     {/* Glow aura behind image */}
                                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                        <div className="w-[80%] h-[80%] bg-accent/[0.06] blur-[80px] rounded-3xl animate-pulse" style={{ animationDuration: '4s' }} />
+                                        <div className="hidden sm:block w-[80%] h-[80%] bg-accent/[0.06] blur-[80px] rounded-3xl animate-pulse" style={{ animationDuration: '4s' }} />
                                     </div>
 
                                     <div className="relative rounded-xl overflow-hidden border border-white/[0.08] shadow-[0_0_80px_rgba(0,0,0,0.5)] bg-white/[0.02] backdrop-blur-sm max-h-[70dvh] sm:max-h-[65vh] flex items-center justify-center">

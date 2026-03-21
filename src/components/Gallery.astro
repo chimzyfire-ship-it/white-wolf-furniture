@@ -1,17 +1,22 @@
+```
 ---
+import CategoryGalleryComponent from './CategoryGallery';
 import { galleryCategories } from '../data/siteData';
-import CategoryGallery from './CategoryGallery';
 ---
-<section id="gallery" class="py-14 sm:py-20 md:py-24 bg-[#030a13] min-h-[400px] sm:min-h-[600px] lg:min-h-screen">
-  <div class="container mx-auto px-4 sm:px-6">
-    <div class="text-center mb-8 sm:mb-12 md:mb-16">
-      <h2 class="text-accent text-[10px] sm:text-sm tracking-[.3em] sm:tracking-widest uppercase mb-1.5 sm:mb-2 font-semibold">Portfolio</h2>
-      <h3 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold">Carpentry <span class="text-accent">&</span> Projects</h3>
-      <p class="text-gray-400 sm:text-gray-500 mt-3 sm:mt-4 max-w-2xl mx-auto uppercase text-[10px] sm:text-xs tracking-[.2em] sm:tracking-widest leading-relaxed">
-        Browse our collections. Select a category to explore.
-      </p>
+
+<section id="gallery" class="py-24 relative overflow-hidden scroll-mt-20">
+    <div class="text-center mb-16 px-6 reveal">
+        <h2 class="text-xs sm:text-sm font-bold tracking-[.4em] sm:tracking-[.6em] text-accent/80 uppercase mb-4 sm:mb-6 flex items-center justify-center gap-4">
+            <span class="w-8 sm:w-16 h-px bg-accent/30"></span>
+            Past Work
+            <span class="w-8 sm:w-16 h-px bg-accent/30"></span>
+        </h2>
+        <h3 class="text-3xl sm:text-5xl md:text-7xl font-serif font-black tracking-tight text-white/90">Curated <span class="text-accent underline decoration-accent/10 underline-offset-8">Projects</span></h3>
     </div>
 
-    <CategoryGallery categories={galleryCategories} client:load />
-  </div>
+    <!-- React Gallery Component -->
+    <CategoryGalleryComponent categories={galleryCategories} client:visible />
+
+    <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-primary to-transparent z-10 pointer-events-none"></div>
 </section>
+```

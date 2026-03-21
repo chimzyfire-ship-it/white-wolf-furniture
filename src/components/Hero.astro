@@ -4,14 +4,14 @@ import QuoteButton from './QuoteButton';
 <section id="hero" class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-primary">
   <!-- Dynamic Background Element -->
   <div class="absolute inset-0 z-0">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle_at_center,rgba(160,174,192,0.15)_0%,transparent_50%)] animate-pulse"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle_at_center,rgba(160,174,192,0.15)_0%,transparent_50%)] sm:animate-pulse"></div>
     <div class="absolute inset-0 bg-[url('/bg-texture.png')] opacity-10 mix-blend-overlay"></div>
   </div>
 
   <div class="relative z-10 text-center px-6">
     <div class="mb-8 flex justify-center">
       <div class="relative">
-        <div class="absolute inset-0 blur-3xl bg-accent opacity-20 rounded-full animate-pulse"></div>
+        <div class="hidden sm:block absolute inset-0 blur-3xl bg-accent opacity-20 rounded-full animate-pulse"></div>
         <img 
           src="/logo.png" 
           alt="White Wolf Furniture" 
