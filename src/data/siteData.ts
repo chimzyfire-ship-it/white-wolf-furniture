@@ -126,6 +126,10 @@ export const galleryCategories: GalleryCategory[] = [
             "/assets/categories/doors/df5252da-e99d-4676-bf5f-e621ed20ed8b.JPG",
             "/assets/categories/doors/edcc63ec-3b67-49e8-a4d0-79d73de3b2ba.JPG",
             "/assets/categories/doors/f18a4c78-dd45-4e1c-ad71-2f8e5543bdd9.JPG",
+            "/assets/categories/doors/109006fb-e512-4471-a5d2-ececd0f18671.JPG",
+            "/assets/categories/doors/493e63a4-56fa-465f-a636-36d485c2e00c.JPG",
+            "/assets/categories/doors/7d1a98c0-871f-4b27-b0cc-6c8c1744c5f7.JPG",
+            "/assets/categories/doors/b36c3b9f-be4a-49cb-bc51-e7ba77d9b536.JPG",
         ]
     },
     {
@@ -184,6 +188,15 @@ export const galleryCategories: GalleryCategory[] = [
             "/assets/categories/sofas-and-sets/f751b891-1b93-4997-971c-cbb50e839fc4.JPG",
             "/assets/categories/sofas-and-sets/f8568f57-b21b-4d10-b1c9-4724a6ccfc54.JPG",
             "/assets/categories/sofas-and-sets/fbc74956-f091-43f9-9fe3-661fd8d190c3.JPG",
+            "/assets/categories/sofas-and-sets/3fef2d3a-1e6f-4482-872d-da3b9167e747.JPG",
+            "/assets/categories/sofas-and-sets/40f9983d-c641-4f8a-9504-cc21f0925d10.JPG",
+            "/assets/categories/sofas-and-sets/47d1aae9-d9a4-4685-a957-a56c8d7e2d09.JPG",
+            "/assets/categories/sofas-and-sets/5003e6a3-cc2a-4d00-8c9a-49104b898b92.JPG",
+            "/assets/categories/sofas-and-sets/6281487b-d7fd-416a-843d-170fb9bfdc8a.JPG",
+            "/assets/categories/sofas-and-sets/6e1b66c4-5034-4d80-a7c0-e11af1257d96.JPG",
+            "/assets/categories/sofas-and-sets/707dfa92-7274-45ed-9028-f05fedc9d8c8.JPG",
+            "/assets/categories/sofas-and-sets/bb865a44-6f6a-4b11-972a-e475aaa7be51.JPG",
+            "/assets/categories/sofas-and-sets/cdd88fbd-46cf-48c1-b926-085d1d6d9862.JPG",
         ]
     },
     {
@@ -297,6 +310,16 @@ export const galleryCategories: GalleryCategory[] = [
             "/assets/categories/beds/fb276a43-0502-4939-b116-9e1723d97e3a.JPG",
             "/assets/categories/beds/fbeaad33-155a-49a3-94c9-51921a764c52.JPG",
             "/assets/categories/beds/feba41f5-109f-42f5-8bd1-2cb4d01e600c.JPG",
+            "/assets/categories/beds/023e757a-013c-42f1-b07e-8a8d7ba759d7.JPG",
+            "/assets/categories/beds/1efbf4fe-3931-4a84-bb2e-20e04b5709b4.JPG",
+            "/assets/categories/beds/293975c5-28c2-4ff4-a826-1238438c208d.JPG",
+            "/assets/categories/beds/375530f3-8343-42d9-a688-a898c5617887.JPG",
+            "/assets/categories/beds/3e8810d0-c7ef-4e81-a4d4-25193ef52ac4.JPG",
+            "/assets/categories/beds/4cf137f4-3b49-4810-aa33-8c86fa94d87b.JPG",
+            "/assets/categories/beds/532bc2e6-0152-4801-96f8-15652515e06c.JPG",
+            "/assets/categories/beds/57b4fdc8-d9ff-4254-8fbc-faf98c26928c.JPG",
+            "/assets/categories/beds/bdcc7e33-10d8-4294-8ceb-f9ed5ae9cd0f.JPG",
+            "/assets/categories/beds/f7bc4bab-b928-451d-ab7f-8ccbc8f2b252.JPG",
         ]
     },
     {
@@ -336,6 +359,10 @@ export const galleryCategories: GalleryCategory[] = [
             "/assets/categories/wardrobes/ee7d0139-8279-4bcb-aa24-93ff3b3e7d9e.JPG",
             "/assets/categories/wardrobes/f26bc61f-8a67-4f96-89db-22bd31ccbb06.JPG",
             "/assets/categories/wardrobes/fd84d342-4c9c-4a33-a31e-510d5e258b39.JPG",
+            "/assets/categories/wardrobes/3ebff204-28c5-4526-b530-2c88d1da5fd1.JPG",
+            "/assets/categories/wardrobes/5ca2f607-12bc-4667-88e2-a76fae0b6984.JPG",
+            "/assets/categories/wardrobes/b76d1136-5b46-4b61-8261-8ce0930bf7b1.JPG",
+            "/assets/categories/wardrobes/de7c3c0e-065e-4a69-90c1-b50584a89c5a.JPG",
         ]
     },
     {
@@ -384,6 +411,10 @@ export const galleryCategories: GalleryCategory[] = [
             "/assets/categories/tv-consoles/f0c68195-6c12-4aec-9734-9195ea17b213.JPG",
             "/assets/categories/tv-consoles/f2812b11-d53f-4b8a-a68c-3210cc7c57f2.JPG",
             "/assets/categories/tv-consoles/ffcb93e9-22b5-435f-9e2d-c58f4a31659f.JPG",
+            "/assets/categories/tv-consoles/0891e4a0-e865-46b8-8ea0-dff4c3f20b95.JPG",
+            "/assets/categories/tv-consoles/3e7f369f-68e7-4abd-96ec-4d9be8ddd675.JPG",
+            "/assets/categories/tv-consoles/799f384f-f239-418c-b220-efbc6d0004e7.JPG",
+            "/assets/categories/tv-consoles/dcfab08d-ee93-443f-ac0b-e2d0581795ad.JPG",
         ]
     },
     {
@@ -434,6 +465,13 @@ export const galleryCategories: GalleryCategory[] = [
             "/assets/categories/dining-sets-and-tables/bd10fbca-2932-40cb-83f8-58f53018b497.JPG",
             "/assets/categories/dining-sets-and-tables/ceef75be-de70-489c-9d4b-316cb477832f.JPG",
             "/assets/categories/dining-sets-and-tables/e01d22a9-933f-40ef-a8cb-c386526c069f.JPG",
+            "/assets/categories/dining-sets-and-tables/22dfc1d6-70ea-4647-a4fd-d2f7fd87fcb2.JPG",
+            "/assets/categories/dining-sets-and-tables/24eb62a6-ed84-4406-8e1a-6559d534e64d.JPG",
+            "/assets/categories/dining-sets-and-tables/29420b3b-8b3f-49ca-ad03-f1df5220f9fd.JPG",
+            "/assets/categories/dining-sets-and-tables/64deb604-3bf9-4ddf-bf7c-532de05971fa.JPG",
+            "/assets/categories/dining-sets-and-tables/99968b86-a13d-4e92-b0b5-3d2da3865ca3.JPG",
+            "/assets/categories/dining-sets-and-tables/cb929bc7-a11e-4743-bbcd-d30d8c5875db.JPG",
+            "/assets/categories/dining-sets-and-tables/dbfd68ab-c53d-4477-8b2b-542f8828c1f0.JPG",
         ]
     },
 ];
