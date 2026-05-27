@@ -135,42 +135,42 @@ export const products = [
     {
         id: 22,
         name: "Modern Slatted White Shoe Cabinet",
-        price: "₦180,000",
+        price: "₦200,000",
         image: "/assets/real-photos/prod-22-slatted-shoe-cabinet.jpeg",
         description: "Elegant multi-tier white shoe rack featuring slatted dual doors and an open side bookshelf layout for modern storage."
     },
     {
         id: 23,
         name: "Grand Gold-Stripe Grey Bed Set",
-        price: "₦550,000",
+        price: "₦400,000",
         image: "/assets/real-photos/prod-23-grand-stripe-grey-bed.jpeg",
         description: "Plush grey upholstered bed frame with vertical and horizontal gold accents, complete with a matching minimalist vanity dressing table."
     },
     {
         id: 24,
         name: "Monarch Velvet Tufted Bed Set",
-        price: "₦300,000",
+        price: "₦500,000",
         image: "/assets/real-photos/prod-24-monarch-velvet-bed.jpeg",
         description: "Commanding charcoal grey velvet bed frame featuring a vertical-tufted extra-wide headboard and a matching plush foot bench."
     },
     {
         id: 25,
         name: "Nova Grey Channel Bed Frame",
-        price: "₦480,000",
+        price: "₦450,000",
         image: "/assets/real-photos/prod-25-grey-channel-bed.jpeg",
         description: "Sleek grey upholstered bed frame featuring premium vertical channel tufting on both the headboard and the footboard."
     },
     {
         id: 26,
         name: "Linear Grey Gold-Accent L-Sectional",
-        price: "₦850,000",
+        price: "₦1,200,000",
         image: "/assets/real-photos/prod-26-gold-accent-sectional.jpeg",
         description: "Generously padded L-shaped sectional in light grey fabric, highlighted by vertical gold metal trim inserts and custom striped bolster pillows."
     },
     {
         id: 27,
         name: "Symphony Gold-Trim Accent Armchairs",
-        price: "₦380,000",
+        price: "₦150,000",
         image: "/assets/real-photos/prod-27-accent-armchairs.jpeg",
         description: "Sophisticated barrel accent armchairs in rich royal blue and soft grey velvet, framed with polished gold metal trim and tapered legs."
     },
