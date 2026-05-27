@@ -149,7 +149,7 @@ export const products = [
     {
         id: 24,
         name: "Monarch Velvet Tufted Bed Set",
-        price: "₦450,000",
+        price: "₦300,000",
         image: "/assets/real-photos/prod-24-monarch-velvet-bed.jpeg",
         description: "Commanding charcoal grey velvet bed frame featuring a vertical-tufted extra-wide headboard and a matching plush foot bench."
     },
@@ -177,28 +177,28 @@ export const products = [
     {
         id: 28,
         name: "Modern 5-Pane Oak Double Doors",
-        price: "₦320,000",
+        price: "₦400,000",
         image: "/assets/real-photos/prod-28-oak-double-doors.jpeg",
         description: "Premium double wooden doors in a light oak finish, each featuring five vertical contemporary glass viewing panels."
     },
     {
         id: 29,
         name: "Serene Pink Boucle Cloud Sofa",
-        price: "₦750,000",
+        price: "₦170,000",
         image: "/assets/real-photos/prod-29-pink-boucle-sofa.jpeg",
         description: "Vibrant pink marshmallow-style cloud sofa upholstered in ultra-soft boucle fabric, featuring organic curves and channel detailing."
     },
     {
         id: 30,
         name: "Luxe Cream Pleated Sofa",
-        price: "₦650,000",
+        price: "₦230,000",
         image: "/assets/real-photos/prod-30-cream-pleated-sofa.jpeg",
         description: "Elegant three-seater sofa in warm cream fabric with deep vertical pleating details, scrolled armrests, and gold-finished flared metal legs."
     },
     {
         id: 31,
         name: "Bespoke Beige Boucle Barrel Chairs",
-        price: "₦320,000",
+        price: "₦160,000",
         image: "/assets/real-photos/prod-31-boucle-barrel-chairs.jpeg",
         description: "Curved barrel accent chairs in cosy beige boucle fabric, offering maximum comfort and a modern organic silhouette."
     },
@@ -212,14 +212,14 @@ export const products = [
     {
         id: 33,
         name: "Elite High-Gloss 3-Door Wardrobe",
-        price: "₦450,000",
+        price: "₦300,000",
         image: "/assets/real-photos/prod-33-high-gloss-wardrobe.jpeg",
         description: "Premium three-door wardrobe in a high-gloss warm beige finish, featuring minimalist black handles, side display shelving, and storage drawers."
     },
     {
         id: 34,
         name: "Vista Floating LED TV Console",
-        price: "₦280,000",
+        price: "₦200,000",
         image: "/assets/real-photos/prod-34-floating-led-tv-console.jpeg",
         description: "Minimalist floating media console in a textured light grey wood finish, equipped with integrated warm LED under-lighting."
     }
