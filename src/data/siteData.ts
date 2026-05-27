@@ -89,6 +89,139 @@ export const products = [
         price: "₦700,000",
         image: "/assets/categories/kitchen-cabinets-wine-racks/649ca29f-8896-496a-abee-32962a3073b4.JPG",
         description: "A modern L-shaped layout accented by vibrant yellow overhead cabinets and deep wood base storage."
+    },
+    {
+        id: 16,
+        name: "Elite Upholstered Bedside Chest",
+        price: "₦150,000",
+        image: "/assets/real-photos/prod-16-grey-bedside-chest.jpeg",
+        description: "Premium grey upholstered bedside cabinet with a smooth top surface, gold-finished drawer handle, and elegant gold legs."
+    },
+    {
+        id: 17,
+        name: "Classic Oak 3-Door Wardrobe",
+        price: "₦400,000",
+        image: "/assets/real-photos/prod-17-classic-oak-wardrobe.jpeg",
+        description: "Spacious wooden three-door wardrobe featuring a warm natural oak finish, sleek silver handles, a bottom drawer, and an open display cubby."
+    },
+    {
+        id: 18,
+        name: "Artisan Tiered Display Counter",
+        price: "₦280,000",
+        image: "/assets/real-photos/prod-18-tiered-display-counter.jpeg",
+        description: "Premium oval display counter featuring elegant vertical slatted detailing, gold accents, and multi-tier glass shelving with integrated warm lighting."
+    },
+    {
+        id: 19,
+        name: "Contemporary Dual-Tone TV Console",
+        price: "₦140,000",
+        image: "/assets/real-photos/prod-19-dual-tone-tv-console.jpeg",
+        description: "Sleek modern entertainment center featuring a bold black and white finish, floating side shelves, and spacious lower cabinets."
+    },
+    {
+        id: 20,
+        name: "Starlight Velvet Geometric Bed Set",
+        price: "₦350,000",
+        image: "/assets/real-photos/prod-20-geometric-velvet-bed.jpeg",
+        description: "Luxurious deep charcoal velvet bed frame featuring an eye-catching geometric silver-inlaid headboard and matching bedside drawers."
+    },
+    {
+        id: 21,
+        name: "Imperial Chevron Navy Bed Set",
+        price: "₦500,000",
+        image: "/assets/real-photos/prod-21-chevron-navy-bed.jpeg",
+        description: "Exquisite king-sized bed frame with a towering vertical chevron-tufted headboard in navy velvet, flanked by rich wood accents and warm LED wall lights."
+    },
+    {
+        id: 22,
+        name: "Modern Slatted White Shoe Cabinet",
+        price: "₦180,000",
+        image: "/assets/real-photos/prod-22-slatted-shoe-cabinet.jpeg",
+        description: "Elegant multi-tier white shoe rack featuring slatted dual doors and an open side bookshelf layout for modern storage."
+    },
+    {
+        id: 23,
+        name: "Grand Gold-Stripe Grey Bed Set",
+        price: "₦550,000",
+        image: "/assets/real-photos/prod-23-grand-stripe-grey-bed.jpeg",
+        description: "Plush grey upholstered bed frame with vertical and horizontal gold accents, complete with a matching minimalist vanity dressing table."
+    },
+    {
+        id: 24,
+        name: "Monarch Velvet Tufted Bed Set",
+        price: "₦450,000",
+        image: "/assets/real-photos/prod-24-monarch-velvet-bed.jpeg",
+        description: "Commanding charcoal grey velvet bed frame featuring a vertical-tufted extra-wide headboard and a matching plush foot bench."
+    },
+    {
+        id: 25,
+        name: "Nova Grey Channel Bed Frame",
+        price: "₦480,000",
+        image: "/assets/real-photos/prod-25-grey-channel-bed.jpeg",
+        description: "Sleek grey upholstered bed frame featuring premium vertical channel tufting on both the headboard and the footboard."
+    },
+    {
+        id: 26,
+        name: "Linear Grey Gold-Accent L-Sectional",
+        price: "₦850,000",
+        image: "/assets/real-photos/prod-26-gold-accent-sectional.jpeg",
+        description: "Generously padded L-shaped sectional in light grey fabric, highlighted by vertical gold metal trim inserts and custom striped bolster pillows."
+    },
+    {
+        id: 27,
+        name: "Symphony Gold-Trim Accent Armchairs",
+        price: "₦380,000",
+        image: "/assets/real-photos/prod-27-accent-armchairs.jpeg",
+        description: "Sophisticated barrel accent armchairs in rich royal blue and soft grey velvet, framed with polished gold metal trim and tapered legs."
+    },
+    {
+        id: 28,
+        name: "Modern 5-Pane Oak Double Doors",
+        price: "₦320,000",
+        image: "/assets/real-photos/prod-28-oak-double-doors.jpeg",
+        description: "Premium double wooden doors in a light oak finish, each featuring five vertical contemporary glass viewing panels."
+    },
+    {
+        id: 29,
+        name: "Serene Pink Boucle Cloud Sofa",
+        price: "₦750,000",
+        image: "/assets/real-photos/prod-29-pink-boucle-sofa.jpeg",
+        description: "Vibrant pink marshmallow-style cloud sofa upholstered in ultra-soft boucle fabric, featuring organic curves and channel detailing."
+    },
+    {
+        id: 30,
+        name: "Luxe Cream Pleated Sofa",
+        price: "₦650,000",
+        image: "/assets/real-photos/prod-30-cream-pleated-sofa.jpeg",
+        description: "Elegant three-seater sofa in warm cream fabric with deep vertical pleating details, scrolled armrests, and gold-finished flared metal legs."
+    },
+    {
+        id: 31,
+        name: "Bespoke Beige Boucle Barrel Chairs",
+        price: "₦320,000",
+        image: "/assets/real-photos/prod-31-boucle-barrel-chairs.jpeg",
+        description: "Curved barrel accent chairs in cosy beige boucle fabric, offering maximum comfort and a modern organic silhouette."
+    },
+    {
+        id: 32,
+        name: "Matrix Cream Leather Geometric Sofa",
+        price: "₦950,000",
+        image: "/assets/real-photos/prod-32-leather-geometric-sofa.jpeg",
+        description: "Luxury top-grain cream leather sofa featuring an intricate geometric grid pattern on the outer side panels, accented by gold metal inlays."
+    },
+    {
+        id: 33,
+        name: "Elite High-Gloss 3-Door Wardrobe",
+        price: "₦450,000",
+        image: "/assets/real-photos/prod-33-high-gloss-wardrobe.jpeg",
+        description: "Premium three-door wardrobe in a high-gloss warm beige finish, featuring minimalist black handles, side display shelving, and storage drawers."
+    },
+    {
+        id: 34,
+        name: "Vista Floating LED TV Console",
+        price: "₦280,000",
+        image: "/assets/real-photos/prod-34-floating-led-tv-console.jpeg",
+        description: "Minimalist floating media console in a textured light grey wood finish, equipped with integrated warm LED under-lighting."
     }
 ];
 
