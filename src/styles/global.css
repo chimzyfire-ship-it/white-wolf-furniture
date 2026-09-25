@@ -8,3 +8,22 @@
 @media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:40px;gap:30px}.hero h1{font-size:clamp(44px,9vw,64px)}.hero-description{max-width:440px;font-size:14px;margin-top:20px}.hero-note{flex-direction:row;justify-content:space-between;margin-top:28px}.hero-image{height:480px}.hero-image>img{object-position:center 64%}.hero-actions{margin-top:24px}.values-strip{font-size:8px;letter-spacing:.05em;gap:12px;text-align:center}.section-heading{align-items:start;flex-direction:column;gap:16px;margin-bottom:28px}.section-heading .eyebrow{margin-bottom:14px}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.category-info h3{font-size:20px}.story,.contact-grid{grid-template-columns:1fr}.story{gap:35px}.story figure{max-width:450px}.story-copy>p:not(.eyebrow){max-width:none}.contact-section{padding-block:64px}.film-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.site-footer{flex-wrap:wrap}.footer-brand{width:100%}}
 @media(max-width:600px){.shell{width:calc(100% - 36px)}.nav-inner{gap:10px;height:70px}.brand{font-size:15px;gap:8px}.brand img{width:34px;height:34px}.brand small{font-size:7px}.nav-contact{display:none}.menu-toggle{margin-left:auto}.section{padding-block:56px}.hero{padding-top:32px;padding-bottom:28px}.hero-image{height:410px}.hero-note{font-size:9px}.hero-actions{gap:16px}.button{padding-inline:18px;gap:22px}.hero-actions .text-link{font-size:11px}.product-grid,.project-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 12px}.product-info h3{font-size:16px;min-height:4.05em}.product-info>p{font-size:12px}.product-info>span{font-size:10px}.category-grid{gap:24px 12px}.category-info h3{font-size:17px}.category-info p{font-size:9px}.category-image{aspect-ratio:.94}.category-tabs{flex-wrap:nowrap;overflow-x:auto;padding:3px 3px 12px;scrollbar-width:thin}.category-tabs button{flex:none}.recent-grid{gap:28px 14px}.recent-grid h3{font-size:17px}.recent-grid small{font-size:8px}.project-films summary{font-size:21px;gap:15px}.film-count{font-size:10px;gap:12px}.film-grid{gap:25px 14px}.film-grid h3{font-size:16px}.media-dialog{padding:50px 12px 20px}.dialog-stage{height:56dvh}.dialog-caption h2{font-size:21px}.dialog-caption{gap:12px}.quote-dialog{padding:30px 22px}.values-strip span{flex:1}.story-signature{margin-top:30px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Use a vector on phones so iOS cannot substitute the arrow emoji. */
+@media (max-width: 760px) {
+  .image-open,
+  .category-image > span,
+  .project-image > span {
+    font-size: 0;
+  }
+  .image-open::after,
+  .category-image > span::after,
+  .project-image > span::after {
+    content: "";
+    width: 16px;
+    height: 16px;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 18 18 6M6 6h12v12' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 18 18 6M6 6h12v12' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+}
