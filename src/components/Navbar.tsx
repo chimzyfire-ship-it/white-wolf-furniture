@@ -1,83 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-
-const Navbar = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-    const closeMenu = () => setIsMenuOpen(false);
-
-    const navLinks = [
-        { name: 'Home', href: '#hero' },
-        { name: 'Products', href: '#products' },
-        { name: 'Gallery', href: '#gallery' },
-        { name: 'About Us', href: '#about' },
-        { name: 'Contacts', href: '#contact' },
-    ];
-
-    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-        // Let the browser handle the smooth URL hash jump naturally via CSS
-        // Only close the mobile menu immediately
-        closeMenu();
-    };
-
-    return (
-        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled || isMenuOpen ? 'glass-nav py-4' : 'bg-transparent py-8'}`}>
-            <div className="container mx-auto px-6 flex justify-between items-center">
-                <a href="#hero" className="flex items-center gap-3 transition-transform hover:scale-105" onClick={closeMenu}>
-                    <img src="/logo.png" alt="White Wolf Furniture Logo" className="h-9 md:h-12 w-auto" />
-                    <span className="text-sm xs:text-lg md:text-xl font-serif font-black tracking-wider block uppercase">White Wolf</span>
-                </a>
-
-                {/* Desktop Menu */}
-                <div className="hidden md:flex gap-8 text-[10px] font-black tracking-[.4em] uppercase">
-                    {navLinks.map((link) => (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            onClick={(e) => handleNavClick(e, link.href)}
-                            className="hover:text-accent transition-all duration-300"
-                        >
-                            {link.name}
-                        </a>
-                    ))}
-                </div>
-
-                {/* Mobile Menu Button */}
-                <div className="md:hidden z-50">
-                    <button onClick={toggleMenu} className="text-secondary p-2 hover:text-accent transition-colors">
-                        {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
-                    </button>
-                </div>
-            </div>
-
-            {/* Mobile Menu Overlay */}
-            <div className={`fixed inset-0 bg-primary/95 backdrop-blur-xl transition-all duration-500 md:hidden ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-                <div className="flex flex-col items-center justify-center h-full gap-10">
-                    {navLinks.map((link, index) => (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            onClick={(e) => handleNavClick(e, link.href)}
-                            className={`text-2xl font-serif font-black tracking-[.2em] uppercase transition-all duration-500 hover:text-accent ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-                            style={{ transitionDelay: `${index * 100}ms` }}
-                        >
-                            {link.name}
-                        </a>
-                    ))}
-                </div>
-            </div>
-        </nav>
-    );
-};
-
-export default Navbar;
+import { useEffect, useRef, useState } from 'react';
+export default function Navbar() {
+ const [open,setOpen]=useState(false);
+ const button=useRef<HTMLButtonElement>(null);
+ const menu=useRef<HTMLDivElement>(null);
+ const links=[['Collection','#products'],['Our work','#gallery'],['Recently done','#recent-work'],['Our story','#about']];
+ useEffect(()=>{
+  if(!open)return;
+  const onKey=(e:KeyboardEvent)=>{if(e.key==='Escape'){setOpen(false);button.current?.focus();}};
+  window.addEventListener('keydown',onKey);
+  const mq=window.matchMedia('(min-width: 901px)');
+  const reset=()=>{if(mq.matches)setOpen(false)};
+  mq.addEventListener('change',reset);
+  return()=>{window.removeEventListener('keydown',onKey);mq.removeEventListener('change',reset)};
+ },[open]);
+ return <header className="site-header"><nav className="shell nav-inner" aria-label="Main navigation">
+  <a className="brand" href="#hero" onClick={()=>setOpen(false)}><img src="/assets/editorial/logo.webp" width="40" height="40" alt=""/><span>WHITE WOLF<small>F U R N I T U R E</small></span></a>
+  <div className="desktop-links">{links.map(([label,href])=><a key={href} href={href}>{label}</a>)}</div>
+  <a className="nav-contact" href="#contact">Start a project <span aria-hidden="true">↗</span></a>
+  <button ref={button} className="menu-toggle" aria-label={open?'Close menu':'Open menu'} aria-expanded={open} aria-controls="mobile-menu" onClick={()=>setOpen(!open)}>{open?'✕':'☰'}</button>
+  <div ref={menu} id="mobile-menu" className="mobile-menu" hidden={!open}>{[...links,['Start a project','#contact']].map(([label,href],i)=><a key={href} href={href} onClick={()=>setOpen(false)}><small>0{i+1}</small>{label}<span aria-hidden="true">↗</span></a>)}</div>
+ </nav></header>;
+}
