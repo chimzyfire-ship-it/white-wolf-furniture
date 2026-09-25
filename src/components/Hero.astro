@@ -1,65 +1,18 @@
 ---
 import QuoteButton from './QuoteButton';
 ---
-<section id="hero" class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-primary">
-  <!-- Dynamic Background Element -->
-  <div class="absolute inset-0 z-0">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle_at_center,rgba(160,174,192,0.15)_0%,transparent_50%)] sm:animate-pulse"></div>
-    <div class="absolute inset-0 bg-[url('/bg-texture.png')] opacity-10 mix-blend-overlay"></div>
+<section id="hero" class="hero shell">
+  <div class="hero-copy">
+    <p class="eyebrow"><span class="small-line"></span> Furniture with feeling</p>
+    <h1>Beautifully made.<br/><em>Entirely yours.</em></h1>
+    <p class="hero-description">Thoughtful furniture for the way you live. From a favourite corner to a whole home, we make your space feel like you.</p>
+    <div class="hero-actions"><a class="button" href="#products">Explore the collection <span aria-hidden="true">↗</span></a><QuoteButton client:load /></div>
+    <div class="hero-note"><span>Designed around you</span><span>Crafted in Sapele, Nigeria</span></div>
   </div>
-
-  <div class="relative z-10 text-center px-6">
-    <div class="mb-8 flex justify-center">
-      <div class="relative">
-        <div class="hidden sm:block absolute inset-0 blur-3xl bg-accent opacity-20 rounded-full animate-pulse"></div>
-        <img 
-          src="/logo.png" 
-          alt="White Wolf Furniture" 
-          class="relative w-44 sm:w-64 md:w-80 drop-shadow-[0_0_50px_rgba(255,255,255,0.1)] animate-fade-in-up"
-        />
-      </div>
-    </div>
-    
-    <h1 class="text-4xl sm:text-5xl md:text-8xl font-serif font-black tracking-tighter mb-4 sm:mb-6 opacity-0 animate-fade-in-up delay-200 uppercase text-glow">
-      WHITE WOLF <span class="text-accent underline decoration-accent/20 underline-offset-[8px] sm:underline-offset-[12px]">FURNITURE</span>
-    </h1>
-    
-    <p class="text-xs sm:text-lg md:text-2xl font-sans text-accent/80 max-w-3xl mx-auto opacity-0 animate-fade-in-up delay-500 uppercase tracking-[0.2em] sm:tracking-[0.5em] leading-relaxed mb-8 sm:mb-12">
-      Artisanal Craftsmanship • Timeless Industrial Design
-    </p>
-
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 opacity-0 animate-fade-in-up delay-700">
-      <QuoteButton client:load />
-      <a href="#products" class="text-xs sm:text-sm font-bold tracking-[.3em] sm:tracking-[.4em] uppercase text-gray-400 hover:text-accent active:text-accent transition-all duration-300">
-        View Collection
-      </a>
-    </div>
-  </div>
-  
-  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-accent">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
-    </svg>
-  </div>
+  <figure class="hero-image">
+    <img src="/assets/editorial/hero-1280.webp" srcset="/assets/editorial/hero-640.webp 640w, /assets/editorial/hero-1280.webp 1280w" sizes="(max-width: 760px) 100vw, 52vw" width="1336" height="1888" alt="Sculptural blush sofa with warm wood detailing and curved mirrors" fetchpriority="high" />
+    <figcaption><span>Soft curves. Lasting character.</span><a href="#gallery" aria-label="Discover our furniture designs">↗</a></figcaption>
+    <span class="image-label">The art of feeling at home</span>
+  </figure>
 </section>
-
-<style>
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-fade-in-up {
-    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  .delay-200 { animation-delay: 0.2s; }
-  .delay-500 { animation-delay: 0.5s; }
-  .delay-700 { animation-delay: 0.7s; }
-</style>
+<div class="values-strip shell"><span>Made for your space</span><span>Considered details</span><span>A personal approach</span></div>

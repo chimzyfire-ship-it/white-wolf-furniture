@@ -1,21 +1,8 @@
 ---
-import CategoryGalleryComponent from './CategoryGallery';
+import CategoryGallery from './CategoryGallery';
 import { galleryCategories } from '../data/siteData';
 ---
-
-<section id="gallery" class="py-24 relative overflow-hidden scroll-mt-20">
-    <div class="text-center mb-16 px-6 reveal">
-        <h2 class="text-xs sm:text-sm font-bold tracking-[.4em] sm:tracking-[.6em] text-accent/80 uppercase mb-4 sm:mb-6 flex items-center justify-center gap-4">
-            <span class="w-8 sm:w-16 h-px bg-accent/30"></span>
-            Past Work
-            <span class="w-8 sm:w-16 h-px bg-accent/30"></span>
-        </h2>
-        <h3 class="text-3xl sm:text-5xl md:text-7xl font-serif font-black tracking-tight text-white/90">Curated <span class="text-accent underline decoration-accent/10 underline-offset-8">Projects</span></h3>
-    </div>
-
-    <!-- React Gallery Component -->
-    <CategoryGalleryComponent categories={galleryCategories} client:visible />
-
-    <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-primary to-transparent z-10 pointer-events-none"></div>
-</section>
-
+<section id="gallery" class="section gallery-section"><div class="shell">
+ <div class="section-heading"><div><p class="eyebrow">02 / Spaces & possibilities</p><h2>A home, <em>well considered.</em></h2></div><p>Explore the details, room by room.<br/>There’s a design for every way of living.</p></div>
+ <CategoryGallery categories={galleryCategories} client:visible={{rootMargin:'300px'}} />
+</div></section>
