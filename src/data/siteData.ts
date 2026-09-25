@@ -1,3 +1,5 @@
+import { additionPhotoCategories } from './recentWork';
+
 export const products = [
     {
         id: 2,
@@ -475,6 +477,11 @@ export const galleryCategories: GalleryCategory[] = [
         ]
     },
 ];
+
+// Include the newly added work in its existing category galleries.
+for (const category of galleryCategories) {
+    category.images.push(...(additionPhotoCategories[category.id] ?? []));
+}
 
 // Backward-compatible flat array (all images across categories)
 export const galleryImages: string[] = galleryCategories.flatMap(c => c.images);
